@@ -1,7 +1,5 @@
 import 'package:flocdock/View/Screens/Auth/Login/login_screen.dart';
 import 'package:flocdock/View/Screens/Auth/SignUp/enter_mobile_number.dart';
-import 'package:flocdock/View/Screens/Auth/SignUp/otp-verification.dart';
-import 'package:flocdock/View/Screens/Home/home_page.dart';
 import 'package:flocdock/View/Widgets/my_button.dart';
 import 'package:flocdock/View/Widgets/my_spacing.dart';
 import 'package:flocdock/View/Widgets/my_text.dart';
@@ -11,17 +9,11 @@ import 'package:flocdock/View/base/loading_dialog.dart';
 import 'package:flocdock/constants/constants.dart';
 import 'package:flocdock/constants/dimensions.dart';
 import 'package:flocdock/constants/images.dart';
-import 'package:flocdock/mixin/data.dart';
 import 'package:flocdock/models/user_model/signup_model.dart';
 import 'package:flocdock/services/dio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/intl.dart';
 
 class SignUpScreen extends StatefulWidget {

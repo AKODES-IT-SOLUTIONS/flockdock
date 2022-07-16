@@ -1,12 +1,7 @@
 import 'package:flocdock/View/Screens/create_event/widget/cover.dart';
-import 'package:flocdock/View/Screens/create_event/widget/features.dart';
-import 'package:flocdock/View/Screens/create_event/widget/important_rule.dart';
-import 'package:flocdock/View/Screens/create_event/widget/tribe.dart';
 import 'package:flocdock/View/Screens/create_event/widget/value_container.dart';
-import 'package:flocdock/View/Widgets/my_button.dart';
 import 'package:flocdock/View/Widgets/my_spacing.dart';
 import 'package:flocdock/View/Widgets/my_text.dart';
-import 'package:flocdock/View/Widgets/my_text_field.dart';
 import 'package:flocdock/View/base/custom_snackbar.dart';
 import 'package:flocdock/View/base/loading_dialog.dart';
 import 'package:flocdock/constants/constants.dart';
@@ -16,9 +11,9 @@ import 'package:flocdock/constants/styles.dart';
 import 'package:flocdock/models/groupModel/category_model.dart';
 import 'package:flocdock/models/groupModel/event_model.dart';
 import 'package:flocdock/services/dio_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:places_service/places_service.dart';
 
@@ -47,6 +42,7 @@ class _FilterDialogState extends State<FilterDialog> {
   int cost=0;
   DateTime selectedDate=DateTime.now();
   String date="";
+  int show=0;
   PlacesService  placesService = PlacesService();
   List<PlacesAutoCompleteResult>  _autoCompleteResult=[];
   @override
@@ -109,30 +105,68 @@ class _FilterDialogState extends State<FilterDialog> {
                       spaceVertical(3),
                       GestureDetector(
                         onTap: () async{
-                          final DateTime? selected = await showDatePicker(
-                            context: context,
-                            builder: (context, child)=>Theme(data: ThemeData().copyWith(
-                                colorScheme: const ColorScheme.dark(
-                                  surface: KDullBlack,
-                                  primary: KBlue,
-                                  onSurface: KWhite,
-                                  secondary: KWhite,
-                                ),
-                                indicatorColor: KWhite,
-                                dialogBackgroundColor: KDullBlack
-                            ), child: child!,
-                            ),
-                            initialDate: selectedDate,
-                            firstDate: DateTime(1970),
-                            lastDate: DateTime(2050),
-                          );
-                          if (selected != null && selected != selectedDate) {
-                            print(selected);
-                            selectedDate = selected;
-                            date=DateFormat("dd MMM, yyyy").format(selectedDate);
-                            widget.filterDetail.date=DateFormat("yyyy-MM-dd").format(selectedDate);
-                            setState(() {});
-                          }
+                          DateTime? selected;
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  color: KDullBlack,
+                                  height: 200,
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: CupertinoDatePicker(
+                                          onDateTimeChanged: (DateTime date) {
+                                            selected=date;
+                                          },
+                                          mode: CupertinoDatePickerMode.date,
+                                          initialDateTime: selectedDate,
+                                          minimumDate: DateTime(1970),
+                                          maximumDate: DateTime.now(),
+                                        ),
+                                      ),
+                                      CupertinoButton(
+                                        child: Text("OK",style: proximaBold.copyWith(color: KBlue)),
+                                        onPressed: () {
+                                          if (selected != null && selected != selectedDate) {
+                                            print(selected);
+                                            selectedDate = selected!;
+                                            date=DateFormat("dd MMM, yyyy").format(selectedDate);
+                                            widget.filterDetail.date=DateFormat("yyyy-MM-dd").format(selectedDate);
+                                            setState(() {});
+                                          }
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                          // final DateTime? selected = await showDatePicker(
+                          //   context: context,
+                          //   builder: (context, child)=>Theme(data: ThemeData().copyWith(
+                          //       colorScheme: const ColorScheme.dark(
+                          //         surface: KDullBlack,
+                          //         primary: KBlue,
+                          //         onSurface: KWhite,
+                          //         secondary: KWhite,
+                          //       ),
+                          //       indicatorColor: KWhite,
+                          //       dialogBackgroundColor: KDullBlack
+                          //   ), child: child!,
+                          //   ),
+                          //   initialDate: selectedDate,
+                          //   firstDate: DateTime(1970),
+                          //   lastDate: DateTime(2050),
+                          // );
+                          // if (selected != null && selected != selectedDate) {
+                          //   print(selected);
+                          //   selectedDate = selected;
+                          //   date=DateFormat("dd MMM, yyyy").format(selectedDate);
+                          //   widget.filterDetail.date=DateFormat("yyyy-MM-dd").format(selectedDate);
+                          //   setState(() {});
+                          // }
                         },
                         child: Container(
                           height: 58,
@@ -232,9 +266,9 @@ class _FilterDialogState extends State<FilterDialog> {
                           ),
                         ),
                       spaceVertical(10),
-                      Text("Type of Group",style: proximaExtraBold.copyWith(color: KWhite,),),
+                      GestureDetector(onTap: () => setState(() {show=1;}),child: Text("Type of Group",style: proximaExtraBold.copyWith(color: KWhite,),)),
                       spaceVertical(3),
-                      Wrap(
+                      if(show==1)Wrap(
                         spacing: 5,
                         runSpacing: 8,
                         children: [
@@ -253,9 +287,9 @@ class _FilterDialogState extends State<FilterDialog> {
                         ],
                       ),
                       spaceVertical(10),
-                      Text("Tribe",style: proximaExtraBold.copyWith(color: KWhite,),),
+                      GestureDetector(onTap: () => setState(() {show=2;}),child: Text("Tribe",style: proximaExtraBold.copyWith(color: KWhite,),)),
                       spaceVertical(3),
-                      Wrap(
+                      if(show==2)Wrap(
                         spacing: 5,
                         runSpacing: 8,
                         children: [
@@ -274,9 +308,9 @@ class _FilterDialogState extends State<FilterDialog> {
                         ],
                       ),
                       spaceVertical(10),
-                      Text("Important Rules",style: proximaExtraBold.copyWith(color: KWhite,),),
+                      GestureDetector(onTap: () => setState(() {show=3;}),child: Text("Important Rules",style: proximaExtraBold.copyWith(color: KWhite,),)),
                       spaceVertical(3),
-                      Wrap(
+                      if(show==3)Wrap(
                         spacing: 5,
                         runSpacing: 8,
                         children: [
@@ -295,9 +329,9 @@ class _FilterDialogState extends State<FilterDialog> {
                         ],
                       ),
                       spaceVertical(10),
-                      Text("Features",style: proximaExtraBold.copyWith(color: KWhite,),),
+                      GestureDetector(onTap: () => setState(() {show=4;}),child: Text("Features",style: proximaExtraBold.copyWith(color: KWhite,),)),
                       spaceVertical(3),
-                      Wrap(
+                      if(show==4)Wrap(
                         spacing: 5,
                         runSpacing: 8,
                         children: [

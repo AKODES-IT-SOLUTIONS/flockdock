@@ -13,6 +13,7 @@ import 'package:flocdock/mixin/data.dart';
 import 'package:flocdock/models/user_model/profile_model.dart';
 import 'package:flocdock/models/user_model/signup_model.dart';
 import 'package:flocdock/services/dio_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,14 @@ class _EditProfileState extends State<EditProfile> {
   bool hive=true;
   bool covid=true;
   bool isLoading=true;
- DetailItem detailItem=DetailItem();
+  String val="";
+  int selectedId=1;
+  DetailItem detailItem=DetailItem();
+  List<String> hightInFeet=["4","4:1","4:2","4:3","4:4","4:5","4:6","4:7","4:8","4:9","4:10","4:11","5",
+    "5:1","5:2","5:3","5:4","5:5","5:6","5:7","5:8","5:9","5:10","5:11","6","6:1","6:2","6:3","6:4",
+    "6:5","6:6","6:7","6:8","6:9","6:10","6:11","7",];
+  List<String> hightInCentimeter=List.generate(200, (index) => index.toString());
+  List<String> weightInKg=List.generate(200, (index) => index.toString());
   @override
   void initState() {
     // TODO: implement initState
@@ -142,6 +150,42 @@ class _EditProfileState extends State<EditProfile> {
                 ],
               ),
             ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+            //   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(40),
+            //       color: KDullBlack
+            //   ),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text("Gender",style: proximaBold.copyWith(color: KBlue)),
+            //       SizedBox(
+            //         height: 25,
+            //         child: DropdownButton<String>(
+            //           underline: const SizedBox(),
+            //           isExpanded: true,
+            //           dropdownColor: KDullBlack,
+            //           icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+            //           items: genders.map((value) {
+            //             return DropdownMenuItem<String>(
+            //               value: value,
+            //               child: Text(value,style: proximaBold.copyWith(color: KWhite)),
+            //             );
+            //           }).toList(),
+            //           onChanged: (String? newValue){
+            //             print(newValue);
+            //             //gender=newValue!;
+            //             userDetail.gender=newValue;
+            //             setState(() {});
+            //           },
+            //           value: userDetail.gender,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
               margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -153,58 +197,135 @@ class _EditProfileState extends State<EditProfile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Gender",style: proximaBold.copyWith(color: KBlue)),
-                  SizedBox(
-                    height: 25,
-                    child: DropdownButton<String>(
-                      underline: const SizedBox(),
-                      isExpanded: true,
-                      dropdownColor: KDullBlack,
-                      icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
-                      items: genders.map((value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value,style: proximaBold.copyWith(color: KWhite)),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue){
-                        print(newValue);
-                        //gender=newValue!;
-                        userDetail.gender=newValue;
-                        setState(() {});
-                      },
-                      value: userDetail.gender,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(userDetail.gender??'',style: proximaBold.copyWith(color: KWhite)),
+                      SizedBox(
+                        height: 30,
+                        child: CupertinoButton(
+                          alignment: Alignment.topRight,
+                          padding: EdgeInsets.zero,
+                            child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                            onPressed: () {
+                            val=userDetail.gender!;
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      color: KDullBlack,
+                                      height: 200,
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          CupertinoButton(
+                                            child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: CupertinoPicker(
+                                                scrollController: FixedExtentScrollController(
+                                                  initialItem: genders.indexWhere((element) => userDetail.gender==element),
+                                                ),
+                                                itemExtent: 50.0,
+                                                onSelectedItemChanged: (int index) {
+                                                  val = genders[index];
+                                                },
+                                                children:  genders.map((e) => Center(child: Text(e,style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                            ),
+                                          ),
+                                          CupertinoButton(
+                                            child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                            onPressed: () {
+                                              userDetail.gender=val;
+                                              setState(() {
+
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            }),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
+
+
             GestureDetector(
               onTap: () async{
-                final DateTime? selected = await showDatePicker(
-                  context: context,
-                  builder: (context, child)=>Theme(data: ThemeData().copyWith(
-                      colorScheme: const ColorScheme.dark(
-                        surface: KDullBlack,
-                        primary: KBlue,
-                        onSurface: KWhite,
-                        secondary: KWhite,
-                      ),
-                      indicatorColor: KWhite,
-                      dialogBackgroundColor: KDullBlack
-                  ), child: child!,
-                  ),
-                  initialDate: selectedDate,
-                  firstDate: DateTime(1970),
-                  lastDate: DateTime.now(),
-                );
-                if (selected != null && selected != selectedDate) {
-                  print(selected);
-                  selectedDate = selected;
-                  DOB=DateFormat("dd MMM, yyyy").format(selectedDate);
-                  userDetail.birthday=DateFormat("yyyy-MM-dd").format(selectedDate);
-                  print(DOB);
-                  setState(() {});
-                }
+                DateTime? selected;
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        color: KDullBlack,
+                        height: 200,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                                  child: CupertinoDatePicker(
+                                    onDateTimeChanged: (DateTime date) {
+                                      selected=date;
+                                    },
+                                    mode: CupertinoDatePickerMode.date,
+                                    initialDateTime: selectedDate,
+                                    minimumDate: DateTime(1970),
+                                    maximumDate: DateTime.now(),
+                                  ),
+                              ),
+                            CupertinoButton(
+                              child: Text("OK",style: proximaBold.copyWith(color: KBlue)),
+                              onPressed: () {
+                                if (selected!=null && selected != selectedDate) {
+                                  print(selected);
+                                  selectedDate = selected!;
+                                  DOB=DateFormat("dd MMM, yyyy").format(selectedDate);
+                                  userDetail.birthday=DateFormat("yyyy-MM-dd").format(selectedDate);
+                                  print(DOB);
+                                  setState(() {});
+                                }
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    });
+
+                // final DateTime? selected = await showDatePicker(
+                //   context: context,
+                //   builder: (context, child)=>Theme(data: ThemeData().copyWith(
+                //       colorScheme: const ColorScheme.dark(
+                //         surface: KDullBlack,
+                //         primary: KBlue,
+                //         onSurface: KWhite,
+                //         secondary: KWhite,
+                //       ),
+                //       indicatorColor: KWhite,
+                //       dialogBackgroundColor: KDullBlack
+                //   ), child: child!,
+                //   ),
+                //   initialDate: selectedDate,
+                //   firstDate: DateTime(1970),
+                //   lastDate: DateTime.now(),
+                // );
+                // if (selected != null && selected != selectedDate) {
+                //   print(selected);
+                //   selectedDate = selected;
+                //   DOB=DateFormat("dd MMM, yyyy").format(selectedDate);
+                //   userDetail.birthday=DateFormat("yyyy-MM-dd").format(selectedDate);
+                //   print(DOB);
+                //   setState(() {});
+                // }
               },
               child: EditField(title: "Birthday",isEnabled: false,controller: TextEditingController(text: DOB),),
             ),
@@ -243,8 +364,236 @@ class _EditProfileState extends State<EditProfile> {
                   ],
                 )
             ),
-            EditField(title: "Hight",value: userDetail.height??'',onChanged: (val) => userDetail.height=val,controller: TextEditingController(text: userDetail.height??''),),
-            EditField(title: "Weight",value: userDetail.weight??'',onChanged: (val) => userDetail.weight=val,controller: TextEditingController(text: userDetail.weight??''),),
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+            //   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(40),
+            //       color: KDullBlack
+            //   ),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text("Hight",style: proximaBold.copyWith(color: KBlue)),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: <Widget>[
+            //           Row(
+            //             children: [
+            //               Text(userDetail.height??"",style: proximaBold.copyWith(color: KWhite)),
+            //               Text(" Feet",style: proximaBold.copyWith(color: KWhite)),
+            //             ],
+            //           ),
+            //           SizedBox(
+            //             height: 30,
+            //             child: CupertinoButton(
+            //                 alignment: Alignment.topRight,
+            //                 padding: EdgeInsets.zero,
+            //                 child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+            //                 onPressed: () {
+            //                   val=userDetail.height??"";
+            //                   showModalBottomSheet(
+            //                       context: context,
+            //                       builder: (BuildContext context) {
+            //                         return Container(
+            //                           color: KDullBlack,
+            //                           height: 200,
+            //                           child: Row(
+            //                             crossAxisAlignment: CrossAxisAlignment.start,
+            //                             children: <Widget>[
+            //                               CupertinoButton(
+            //                                 child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+            //                                 onPressed: () {
+            //                                   Navigator.pop(context);
+            //                                 },
+            //                               ),
+            //                               Expanded(
+            //                                 child: CupertinoPicker(
+            //                                     scrollController: FixedExtentScrollController(
+            //                                       initialItem: hightInFeet.indexWhere((element) => userDetail.height==element),
+            //                                     ),
+            //                                     itemExtent: 50.0,
+            //                                     onSelectedItemChanged: (int index) {
+            //                                       val = hightInFeet[index];
+            //                                     },
+            //                                     children:  hightInFeet.map((e) => Center(child: Text(e+" Feet",style: proximaBold.copyWith(color: KWhite)),),).toList()
+            //                                 ),
+            //                               ),
+            //                               CupertinoButton(
+            //                                 child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+            //                                 onPressed: () {
+            //                                   userDetail.height=val;
+            //                                   setState(() {
+            //
+            //                                   });
+            //                                   Navigator.pop(context);
+            //                                 },
+            //                               ),
+            //                             ],
+            //                           ),
+            //                         );
+            //                       });
+            //                 }),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: KDullBlack
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Hight",style: proximaBold.copyWith(color: KBlue)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: [
+                          Text(userDetail.height??"",style: proximaBold.copyWith(color: KWhite)),
+                          if(userDetail.height!=null)Text(" cm",style: proximaBold.copyWith(color: KWhite)),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: CupertinoButton(
+                            alignment: Alignment.topRight,
+                            padding: EdgeInsets.zero,
+                            child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                            onPressed: () {
+                              val=userDetail.height??"";
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      color: KDullBlack,
+                                      height: 200,
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          CupertinoButton(
+                                            child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: CupertinoPicker(
+                                                scrollController: FixedExtentScrollController(
+                                                  initialItem: hightInCentimeter.indexWhere((element) => userDetail.height==element),
+                                                ),
+                                                itemExtent: 50.0,
+                                                onSelectedItemChanged: (int index) {
+                                                  val = hightInCentimeter[index];
+                                                },
+                                                children:  hightInCentimeter.map((e) => Center(child: Text(e+" cm",style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                            ),
+                                          ),
+                                          CupertinoButton(
+                                            child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                            onPressed: () {
+                                              userDetail.height=val;
+                                              setState(() {
+
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            }),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: KDullBlack
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Weight",style: proximaBold.copyWith(color: KBlue)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        children: [
+                          Text(userDetail.weight??"",style: proximaBold.copyWith(color: KWhite)),
+                          if(userDetail.weight!=null)Text(" kg",style: proximaBold.copyWith(color: KWhite)),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 30,
+                        child: CupertinoButton(
+                            alignment: Alignment.topRight,
+                            padding: EdgeInsets.zero,
+                            child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                            onPressed: () {
+                              val=userDetail.weight??"";
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      color: KDullBlack,
+                                      height: 200,
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          CupertinoButton(
+                                            child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          Expanded(
+                                            child: CupertinoPicker(
+                                                scrollController: FixedExtentScrollController(
+                                                  initialItem: weightInKg.indexWhere((element) => userDetail.weight==element),
+                                                ),
+                                                itemExtent: 50.0,
+                                                onSelectedItemChanged: (int index) {
+                                                  val = weightInKg[index];
+                                                },
+                                                children:  weightInKg.map((e) => Center(child: Text(e+" kg",style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                            ),
+                                          ),
+                                          CupertinoButton(
+                                            child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                            onPressed: () {
+                                              userDetail.weight=val;
+                                              setState(() {
+
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            }),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            //EditField(title: "Hight",value: userDetail.height??'',onChanged: (val) => userDetail.height=val,controller: TextEditingController(text: userDetail.height??''),),
+            //EditField(title: "Weight",value: userDetail.weight??'',onChanged: (val) => userDetail.weight=val,controller: TextEditingController(text: userDetail.weight??''),),
             isLoading?const SizedBox():Column(
               children: [
                 Container(
@@ -258,32 +607,103 @@ class _EditProfileState extends State<EditProfile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Ethnicity",style: proximaBold.copyWith(color: KBlue)),
-                      SizedBox(
-                        height: 25,
-                        child: DropdownButton<Ethnicity>(
-                          underline: const SizedBox(),
-                          isExpanded: true,
-                          dropdownColor: KDullBlack,
-                          iconEnabledColor: Colors.red,
-                          focusColor: Colors.green,
-                          icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
-                          items: profileDetail.ethnicities!.map((value) {
-                            return DropdownMenuItem<Ethnicity>(
-                              value: value,
-                              child: Text(value.ethnicity??'',style: proximaBold.copyWith(color: KWhite)),
-                            );
-                          }).toList(),
-                          onChanged: (newValue){
-                            print(newValue);
-                            userDetail.ethnicityId=newValue!.ethnicityId;
-                            setState(() {});
-                          },
-                          value: profileDetail.ethnicities!.where((element) => element.ethnicityId==userDetail.ethnicityId).first,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(profileDetail.ethnicities!.where((element) => element.ethnicityId==userDetail.ethnicityId).first.ethnicity??'',style: proximaBold.copyWith(color: KWhite)),
+                          SizedBox(
+                            height: 30,
+                            child: CupertinoButton(
+                                alignment: Alignment.topRight,
+                                padding: EdgeInsets.zero,
+                                child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                                onPressed: () {
+                                  selectedId=userDetail.ethnicityId!;
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          color: KDullBlack,
+                                          height: 200,
+                                          child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              CupertinoButton(
+                                                child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                              Expanded(
+                                                child: CupertinoPicker(
+                                                    scrollController: FixedExtentScrollController(
+                                                      initialItem: profileDetail.ethnicities!.indexWhere((element) => selectedId==element.ethnicityId),
+                                                    ),
+                                                    itemExtent: 50.0,
+                                                    onSelectedItemChanged: (int index) {
+                                                      selectedId = profileDetail.ethnicities![index].ethnicityId!;
+                                                    },
+                                                    children:  profileDetail.ethnicities!.map((e) => Center(child: Text(e.ethnicity??'',style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                                ),
+                                              ),
+                                              CupertinoButton(
+                                                child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  userDetail.ethnicityId=selectedId;
+                                                  setState(() {
+
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                }),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                //   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(40),
+                //       color: KDullBlack
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Ethnicity",style: proximaBold.copyWith(color: KBlue)),
+                //       SizedBox(
+                //         height: 25,
+                //         child: DropdownButton<Ethnicity>(
+                //           underline: const SizedBox(),
+                //           isExpanded: true,
+                //           dropdownColor: KDullBlack,
+                //           iconEnabledColor: Colors.red,
+                //           focusColor: Colors.green,
+                //           icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
+                //           items: profileDetail.ethnicities!.map((value) {
+                //             return DropdownMenuItem<Ethnicity>(
+                //               value: value,
+                //               child: Text(value.ethnicity??'',style: proximaBold.copyWith(color: KWhite)),
+                //             );
+                //           }).toList(),
+                //           onChanged: (newValue){
+                //             print(newValue);
+                //             userDetail.ethnicityId=newValue!.ethnicityId;
+                //             setState(() {});
+                //           },
+                //           value: profileDetail.ethnicities!.where((element) => element.ethnicityId==userDetail.ethnicityId).first,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -295,30 +715,101 @@ class _EditProfileState extends State<EditProfile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Body Type",style: proximaBold.copyWith(color: KBlue)),
-                      SizedBox(
-                        height: 25,
-                        child: DropdownButton<BodyType>(
-                          underline: const SizedBox(),
-                          isExpanded: true,
-                          dropdownColor: KDullBlack,
-                          icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
-                          items: profileDetail.bodyTypes!.map((value) {
-                            return DropdownMenuItem<BodyType>(
-                              value: value,
-                              child: Text(value.bodyType??'',style: proximaBold.copyWith(color: KWhite)),
-                            );
-                          }).toList(),
-                          onChanged: (value){
-                            print(value);
-                            userDetail.bodyTypeId=value!.bodyTypeId;
-                            setState(() {});
-                          },
-                          value: profileDetail.bodyTypes!.where((element) => element.bodyTypeId==userDetail.bodyTypeId).first,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(profileDetail.bodyTypes!.where((element) => element.bodyTypeId==userDetail.bodyTypeId).first.bodyType??'',style: proximaBold.copyWith(color: KWhite)),
+                          SizedBox(
+                            height: 30,
+                            child: CupertinoButton(
+                                alignment: Alignment.topRight,
+                                padding: EdgeInsets.zero,
+                                child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                                onPressed: () {
+                                  selectedId=userDetail.bodyTypeId!;
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          color: KDullBlack,
+                                          height: 200,
+                                          child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              CupertinoButton(
+                                                child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                              Expanded(
+                                                child: CupertinoPicker(
+                                                    scrollController: FixedExtentScrollController(
+                                                      initialItem: profileDetail.bodyTypes!.indexWhere((element) => selectedId==element.bodyTypeId),
+                                                    ),
+                                                    itemExtent: 50.0,
+                                                    onSelectedItemChanged: (int index) {
+                                                      selectedId = profileDetail.bodyTypes![index].bodyTypeId!;
+                                                    },
+                                                    children:  profileDetail.bodyTypes!.map((e) => Center(child: Text(e.bodyType??'',style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                                ),
+                                              ),
+                                              CupertinoButton(
+                                                child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  userDetail.bodyTypeId=selectedId;
+                                                  setState(() {
+
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                }),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                //   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(40),
+                //       color: KDullBlack
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Body Type",style: proximaBold.copyWith(color: KBlue)),
+                //       SizedBox(
+                //         height: 25,
+                //         child: DropdownButton<BodyType>(
+                //           underline: const SizedBox(),
+                //           isExpanded: true,
+                //           dropdownColor: KDullBlack,
+                //           icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
+                //           items: profileDetail.bodyTypes!.map((value) {
+                //             return DropdownMenuItem<BodyType>(
+                //               value: value,
+                //               child: Text(value.bodyType??'',style: proximaBold.copyWith(color: KWhite)),
+                //             );
+                //           }).toList(),
+                //           onChanged: (value){
+                //             print(value);
+                //             userDetail.bodyTypeId=value!.bodyTypeId;
+                //             setState(() {});
+                //           },
+                //           value: profileDetail.bodyTypes!.where((element) => element.bodyTypeId==userDetail.bodyTypeId).first,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -330,29 +821,100 @@ class _EditProfileState extends State<EditProfile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Position",style: proximaBold.copyWith(color: KBlue)),
-                      SizedBox(
-                        height: 25,
-                        child: DropdownButton<Position>(
-                          underline: const SizedBox(),
-                          isExpanded: true,
-                          dropdownColor: KDullBlack,
-                          icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
-                          items: profileDetail.positions!.map((value) {
-                            return DropdownMenuItem<Position>(
-                              value: value,
-                              child: Text(value.position??"",style: proximaBold.copyWith(color: KWhite)),
-                            );
-                          }).toList(),
-                          onChanged: (value){
-                            userDetail.positionId=value!.positionId;
-                            setState(() {});
-                          },
-                          value: profileDetail.positions!.where((element) => element.positionId==userDetail.positionId).first,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(profileDetail.positions!.where((element) => element.positionId==userDetail.positionId).first.position??'',style: proximaBold.copyWith(color: KWhite)),
+                          SizedBox(
+                            height: 30,
+                            child: CupertinoButton(
+                                alignment: Alignment.topRight,
+                                padding: EdgeInsets.zero,
+                                child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                                onPressed: () {
+                                  selectedId=userDetail.positionId!;
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          color: KDullBlack,
+                                          height: 200,
+                                          child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              CupertinoButton(
+                                                child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                              Expanded(
+                                                child: CupertinoPicker(
+                                                    scrollController: FixedExtentScrollController(
+                                                      initialItem: profileDetail.positions!.indexWhere((element) => selectedId==element.positionId),
+                                                    ),
+                                                    itemExtent: 50.0,
+                                                    onSelectedItemChanged: (int index) {
+                                                      selectedId = profileDetail.positions![index].positionId!;
+                                                    },
+                                                    children:  profileDetail.positions!.map((e) => Center(child: Text(e.position??'',style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                                ),
+                                              ),
+                                              CupertinoButton(
+                                                child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  userDetail.positionId=selectedId;
+                                                  setState(() {
+
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                }),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                //   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(40),
+                //       color: KDullBlack
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Position",style: proximaBold.copyWith(color: KBlue)),
+                //       SizedBox(
+                //         height: 25,
+                //         child: DropdownButton<Position>(
+                //           underline: const SizedBox(),
+                //           isExpanded: true,
+                //           dropdownColor: KDullBlack,
+                //           icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
+                //           items: profileDetail.positions!.map((value) {
+                //             return DropdownMenuItem<Position>(
+                //               value: value,
+                //               child: Text(value.position??"",style: proximaBold.copyWith(color: KWhite)),
+                //             );
+                //           }).toList(),
+                //           onChanged: (value){
+                //             userDetail.positionId=value!.positionId;
+                //             setState(() {});
+                //           },
+                //           value: profileDetail.positions!.where((element) => element.positionId==userDetail.positionId).first,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -364,29 +926,100 @@ class _EditProfileState extends State<EditProfile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Relationship",style: proximaBold.copyWith(color: KBlue)),
-                      SizedBox(
-                        height: 25,
-                        child: DropdownButton<RelationShip>(
-                          underline: const SizedBox(),
-                          isExpanded: true,
-                          dropdownColor: KDullBlack,
-                          icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
-                          items: profileDetail.relationships!.map((value) {
-                            return DropdownMenuItem<RelationShip>(
-                              value: value,
-                              child: Text(value.relationship??'',style: proximaBold.copyWith(color: KWhite)),
-                            );
-                          }).toList(),
-                          onChanged: (value){
-                            userDetail.relationshipId=value!.relationshipId;
-                            setState(() {});
-                          },
-                          value: profileDetail.relationships!.where((element) => element.relationshipId==userDetail.relationshipId).first,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(profileDetail.relationships!.where((element) => element.relationshipId==userDetail.relationshipId).first.relationship??'',style: proximaBold.copyWith(color: KWhite)),
+                          SizedBox(
+                            height: 30,
+                            child: CupertinoButton(
+                                alignment: Alignment.topRight,
+                                padding: EdgeInsets.zero,
+                                child: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,),
+                                onPressed: () {
+                                  selectedId=userDetail.relationshipId!;
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          color: KDullBlack,
+                                          height: 200,
+                                          child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              CupertinoButton(
+                                                child: Text("Cancel",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                              Expanded(
+                                                child: CupertinoPicker(
+                                                    scrollController: FixedExtentScrollController(
+                                                      initialItem: profileDetail.relationships!.indexWhere((element) => selectedId==element.relationshipId),
+                                                    ),
+                                                    itemExtent: 50.0,
+                                                    onSelectedItemChanged: (int index) {
+                                                      selectedId = profileDetail.relationships![index].relationshipId!;
+                                                    },
+                                                    children:  profileDetail.relationships!.map((e) => Center(child: Text(e.relationship??'',style: proximaBold.copyWith(color: KWhite)),),).toList()
+                                                ),
+                                              ),
+                                              CupertinoButton(
+                                                child: Text("Ok",style: proximaBold.copyWith(color: KBlue)),
+                                                onPressed: () {
+                                                  userDetail.relationshipId=selectedId;
+                                                  setState(() {
+
+                                                  });
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                }),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                // Container(
+                //   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                //   margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(40),
+                //       color: KDullBlack
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text("Relationship",style: proximaBold.copyWith(color: KBlue)),
+                //       SizedBox(
+                //         height: 25,
+                //         child: DropdownButton<RelationShip>(
+                //           underline: const SizedBox(),
+                //           isExpanded: true,
+                //           dropdownColor: KDullBlack,
+                //           icon: const Icon(Icons.arrow_drop_down_rounded,color: KWhite,size: 20,),
+                //           items: profileDetail.relationships!.map((value) {
+                //             return DropdownMenuItem<RelationShip>(
+                //               value: value,
+                //               child: Text(value.relationship??'',style: proximaBold.copyWith(color: KWhite)),
+                //             );
+                //           }).toList(),
+                //           onChanged: (value){
+                //             userDetail.relationshipId=value!.relationshipId;
+                //             setState(() {});
+                //           },
+                //           value: profileDetail.relationships!.where((element) => element.relationshipId==userDetail.relationshipId).first,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 Container(
                   width: MediaQuery.of(context).size.width*0.8,
                   padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: 8),
@@ -493,36 +1126,108 @@ class _EditProfileState extends State<EditProfile> {
                   ],
                 )
             ),
+
             GestureDetector(
               onTap: () async{
-                final DateTime? selected = await showDatePicker(
-                  context: context,
-                  builder: (context, child)=>Theme(data: ThemeData().copyWith(
-                      colorScheme: const ColorScheme.dark(
-                        surface: KDullBlack,
-                        primary: KBlue,
-                        onSurface: KWhite,
-                        secondary: KWhite,
-                      ),
-                      indicatorColor: KWhite,
-                      dialogBackgroundColor: KDullBlack
-                  ), child: child!,
-                  ),
-                  initialDate: vaccinationDate,
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime.now(),
-                );
-                if (selected != null && selected != vaccinationDate) {
-                  print(selected);
-                  setState(() {
-                    vaccinationDate = selected;
-                    vaccination=DateFormat("dd MMM, yyyy").format(vaccinationDate);
-                    userDetail.dateOfLastTest=DateFormat("yyyy-MM-dd").format(vaccinationDate);
-                  });
-                }
+                DateTime? selected;
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        color: KDullBlack,
+                        height: 200,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Expanded(
+                              child: CupertinoDatePicker(
+                                onDateTimeChanged: (DateTime date) {
+                                  selected=date;
+                                },
+                                mode: CupertinoDatePickerMode.date,
+                                initialDateTime: vaccinationDate,
+                                minimumDate: DateTime(2000),
+                                maximumDate: DateTime.now(),
+                              ),
+                            ),
+                            CupertinoButton(
+                              child: Text("OK",style: proximaBold.copyWith(color: KBlue)),
+                              onPressed: () {
+                                if (selected != null && selected != vaccinationDate) {
+                                  print(selected);
+                                  setState(() {
+                                    vaccinationDate = selected!;
+                                    vaccination=DateFormat("dd MMM, yyyy").format(vaccinationDate);
+                                    userDetail.dateOfLastTest=DateFormat("yyyy-MM-dd").format(vaccinationDate);
+                                  });
+                                }
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    });
+
+                // final DateTime? selected = await showDatePicker(
+                //   context: context,
+                //   builder: (context, child)=>Theme(data: ThemeData().copyWith(
+                //       colorScheme: const ColorScheme.dark(
+                //         surface: KDullBlack,
+                //         primary: KBlue,
+                //         onSurface: KWhite,
+                //         secondary: KWhite,
+                //       ),
+                //       indicatorColor: KWhite,
+                //       dialogBackgroundColor: KDullBlack
+                //   ), child: child!,
+                //   ),
+                //   initialDate: selectedDate,
+                //   firstDate: DateTime(1970),
+                //   lastDate: DateTime.now(),
+                // );
+                // if (selected != null && selected != selectedDate) {
+                //   print(selected);
+                //   selectedDate = selected;
+                //   DOB=DateFormat("dd MMM, yyyy").format(selectedDate);
+                //   userDetail.birthday=DateFormat("yyyy-MM-dd").format(selectedDate);
+                //   print(DOB);
+                //   setState(() {});
+                // }
               },
               child: EditField(title: "Date of Last Test",value: vaccination,isEnabled: false,controller: TextEditingController(text: vaccination),),
             ),
+
+            // GestureDetector(
+            //   onTap: () async{
+            //     final DateTime? selected = await showDatePicker(
+            //       context: context,
+            //       builder: (context, child)=>Theme(data: ThemeData().copyWith(
+            //           colorScheme: const ColorScheme.dark(
+            //             surface: KDullBlack,
+            //             primary: KBlue,
+            //             onSurface: KWhite,
+            //             secondary: KWhite,
+            //           ),
+            //           indicatorColor: KWhite,
+            //           dialogBackgroundColor: KDullBlack
+            //       ), child: child!,
+            //       ),
+            //       initialDate: vaccinationDate,
+            //       firstDate: DateTime(2000),
+            //       lastDate: DateTime.now(),
+            //     );
+            //     if (selected != null && selected != vaccinationDate) {
+            //       print(selected);
+            //       setState(() {
+            //         vaccinationDate = selected;
+            //         vaccination=DateFormat("dd MMM, yyyy").format(vaccinationDate);
+            //         userDetail.dateOfLastTest=DateFormat("yyyy-MM-dd").format(vaccinationDate);
+            //       });
+            //     }
+            //   },
+            //   child: EditField(title: "Date of Last Test",value: vaccination,isEnabled: false,controller: TextEditingController(text: vaccination),),
+            // ),
             Container(
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: 8),
                 margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -574,7 +1279,6 @@ class _EditProfileState extends State<EditProfile> {
     if(response['status']=='success'){
       var jsonData= response['data'];
       profileDetail=ProfileDetail.fromJson(jsonData);
-      //print(profileDetail.ethnicities!.first.toJson());
       Navigator.pop(context);
       isLoading=false;
       setState(() {});

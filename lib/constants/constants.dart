@@ -35,7 +35,7 @@ class AppConstants {
   static const String ZONE_ID = 'zoneId';
 
 
-  static const String apiKey = "AIzaSyC4HqZf-zANxtQqW0riYOrRKdrXvzMqCqM";
+  static const String apiKey = "AIzaSyCabuXEjXibCoxdTGTYs7knEbxBRYjpVpE";
   //static const String apiUrl = 'https://dev.eigix.com/flockDock/api/';
   static const String apiUrl = 'https://eigix.net/flockdock/api/';
   static const String register = 'signup';
