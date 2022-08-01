@@ -46,7 +46,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KbgBlack,
-      appBar: SimpleAppbar(description: "", pageName: "Settings",pageTrailing: Images.close,),
+      appBar: SimpleAppbar(description: "", pageName: "SETTINGS",pageTrailing: Images.close,),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(

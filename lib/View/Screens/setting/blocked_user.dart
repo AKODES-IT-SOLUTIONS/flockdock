@@ -33,7 +33,7 @@ class _BlockedUserState extends State<BlockedUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KbgBlack,
-      appBar: SimpleAppbar(description: "Blocked Users", pageName: "Settings",pageTrailing: "",),
+      appBar: SimpleAppbar(description: "Blocked Users", pageName: "SETTINGS",pageTrailing: "",),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(

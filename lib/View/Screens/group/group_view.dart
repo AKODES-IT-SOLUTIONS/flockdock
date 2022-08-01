@@ -185,7 +185,7 @@ class _GroupViewState extends State<GroupView> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width*0.9,
-                  height: 100,
+                  height: 80,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: GoogleMap(

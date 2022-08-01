@@ -168,13 +168,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                       isDense: true,
                       hintText: "Search...",
-                      hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),
+                      hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.5)),
                       fillColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
                       filled: true,
 
                       prefixIcon: Padding(
                         padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                        child: SvgPicture.asset(Images.search),
+                        child: SvgPicture.asset(Images.search,color: KWhite.withOpacity(0.5)),
                       ),
                     ),
                   ),
@@ -374,7 +374,7 @@ class _HomePageState extends State<HomePage> {
                           maxCrossAxisExtent: 200,
                           childAspectRatio: 4 / 3,
                           crossAxisSpacing: 13,
-                          mainAxisSpacing: 13
+                          mainAxisSpacing: 13,
                       ),
                       itemCount: groupData!.length,
                       itemBuilder: (BuildContext ctx, index){

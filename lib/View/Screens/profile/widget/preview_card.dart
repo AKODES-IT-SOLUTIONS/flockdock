@@ -18,7 +18,7 @@ class PreviewCard extends StatelessWidget {
     return  Column(
       children: [
         Container(
-          height: 10,
+          height: 7,
           width: MediaQuery.of(context).size.width*0.3,
           margin: EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class PreviewCard extends StatelessWidget {
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(2),
               decoration: BoxDecoration(
-                  color: KBlue,
+                  color: Colors.red,
                   shape: BoxShape.circle
               ),
               child: Center(child: Icon(Icons.check,color: KWhite,size: 20,)),

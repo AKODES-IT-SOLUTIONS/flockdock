@@ -156,6 +156,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                           timestamp: DateTime.now(), accuracy: 1, altitude: 1, heading: 1, speed: 1, speedAccuracy: 1);
                       isLoading=true;
                       setMarker();
+                      setMarker();
                       print("cameramove");
                     },
                     onCameraMoveStarted: () {
@@ -393,6 +394,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 width: 100,
                 child: Column(
                   children: [
+                    SizedBox(height: 15,),
                     Container(
                       width: 60,
                       padding: EdgeInsets.all(4),

@@ -85,7 +85,7 @@ class _FilterDialogState extends State<FilterDialog> {
                           Expanded(
                             child: Center(
                                 child: MyText(
-                              text: "Filters",
+                              text: "FILTERS",
                               color: KWhite,
                               fontFamily: "Proxima",
                               size: 20,

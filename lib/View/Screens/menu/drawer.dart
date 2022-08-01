@@ -51,14 +51,23 @@ class _MyDrawerState extends State<MyDrawer> {
               children: [
                 InkWell(
                   onTap: () => Get.to(EditProfilePicture()),
-                  child: ClipOval(
-                    child:
-                        Image.network(
-                          AppData().userdetail!.profilePicture??AppConstants.placeholder,
-                          height: 90,
-                          width: 90, fit:
-                          BoxFit.cover,
-                        )
+                  child: Container(
+                    padding: EdgeInsets.all(1),
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: KBlue,
+                      shape: BoxShape.circle
+                    ),
+                    child: ClipOval(
+                      child:
+                          Image.network(
+                            AppData().userdetail!.profilePicture??AppConstants.placeholder,
+                            height: 90,
+                            width: 90, fit:
+                            BoxFit.cover,
+                          )
+                    ),
                   ),
                 ),
                 SizedBox(height: 5),
@@ -74,11 +83,11 @@ class _MyDrawerState extends State<MyDrawer> {
               horizontalTitleGap: 0,
               leading: Padding(
                 padding: EdgeInsets.all(10.0),
-                  child: SvgPicture.asset(Images.setting,color: KWhite,)
+                  child: SvgPicture.asset(Images.setting,color: KWhite.withOpacity(0.7),)
               ),
               title: Text(
-                "Setting",
-                style: proximaBold.copyWith(fontSize:Dimensions.fontSizeExtraLarge,color: KWhite),
+                "Settings",
+                style: proximaBold.copyWith(fontSize:Dimensions.fontSizeExtraLarge,color: KWhite.withOpacity(0.7)),
               ),
               onTap: () => Get.to(Setting()),
             ),
@@ -94,7 +103,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   padding: const EdgeInsets.only(left: 15.0),
                   child: Text(
                     "Upgrade to VIP plan",
-                    style: proximaBold.copyWith(color: KWhite),
+                    style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),
                   ),
                 ),
               ),

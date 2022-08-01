@@ -48,6 +48,7 @@ class _LoginWithSocialState extends State<LoginWithSocial> {
                 textColor: KPureBlack,
                 buttonColor: KWhite,
                 onPressed: () {},
+                sizebox: 10,
               ),
               spaceVertical(14),
               SocialButton(

@@ -74,7 +74,7 @@ class _OTPCodeState extends State<OTPCode> {
                     align: TextAlign.center,
                     fontFamily: "Proxima",
                     size: 17,
-                    color: KWhite,
+                    color: KWhite.withOpacity(0.5),
                   ),
                   spaceVertical(38),
                   MyTextField(

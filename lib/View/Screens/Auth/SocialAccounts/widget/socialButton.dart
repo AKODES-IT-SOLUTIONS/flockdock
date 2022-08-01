@@ -13,6 +13,7 @@ class SocialButton extends StatelessWidget {
       fontFamily;
   double? size;
   String Img;
+  double? sizebox;
 
   SocialButton({
     this.onPressed,
@@ -25,6 +26,7 @@ class SocialButton extends StatelessWidget {
     this.textAlign,
     this.textWeight,
     this.fontFamily,
+    this.sizebox
   });
 
   @override
@@ -34,7 +36,7 @@ class SocialButton extends StatelessWidget {
         color: buttonColor,
         borderRadius: BorderRadius.circular(30),
       ),
-      height: 58,
+      height: 50,
       width: double.infinity,
       child: TextButton(
         onPressed: onPressed,
@@ -51,7 +53,10 @@ class SocialButton extends StatelessWidget {
             weight: textWeight,
             align: textAlign,
             decoration: textDecoration,
-          )
+          ),
+          SizedBox(
+            width: sizebox,
+          ),
         ]),
       ),
     );

@@ -54,9 +54,10 @@ class _BottomBarState extends State<BottomBar> {
                   SvgPicture.asset(Images.nearby,color: pageIndex == 0?KWhite:Kunactive,),
                   spaceVertical(5),
                   MyText(
-                    text: "Nearby",
+                    text: "NEARBY",
                     color: pageIndex == 0?KWhite:Kunactive,
-                    size: pageIndex == 0?15:12,
+                    size: pageIndex == 0?13:12,
+                    fontFamily: "Proxima",
                   )
 
                 ],
@@ -72,9 +73,10 @@ class _BottomBarState extends State<BottomBar> {
                   SvgPicture.asset(Images.inbox,color: pageIndex == 1?KWhite:Kunactive,),
                   spaceVertical(5),
                   MyText(
-                    text: "Inbox",
+                    text: "INBOX",
+                    fontFamily: "Proxima",
                     color: pageIndex == 1?KWhite:Kunactive,
-                    size: pageIndex == 1?15:12,
+                    size: pageIndex == 1?13:12,
                   )
 
                 ],
@@ -92,9 +94,10 @@ class _BottomBarState extends State<BottomBar> {
                   SvgPicture.asset(Images.discover,color: pageIndex == 2?KWhite:Kunactive,),
                   spaceVertical(5),
                   MyText(
-                    text: "Discover",
+                    text: "DISCOVER",
+                    fontFamily: "Proxima",
                     color: pageIndex == 2?KWhite:Kunactive,
-                    size: pageIndex == 2?15:12,
+                    size: pageIndex == 2?13:12,
                   )
 
                 ],
@@ -112,9 +115,10 @@ class _BottomBarState extends State<BottomBar> {
                   SvgPicture.asset(Images.favourites,color: pageIndex == 3?KWhite:Kunactive,),
                   spaceVertical(5),
                   MyText(
-                    text: "Favourites",
+                    text: "FAVOURITES",
+                    fontFamily: "Proxima",
                     color: pageIndex == 3?KWhite:Kunactive,
-                    size: pageIndex == 3?15:12,
+                    size: pageIndex == 3?13:12,
                   )
 
                 ],

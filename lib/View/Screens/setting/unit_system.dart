@@ -26,7 +26,7 @@ class _UnitSystemState extends State<UnitSystem> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KbgBlack,
-      appBar: SimpleAppbar(description: "Unit System", pageName: "Settings",pageTrailing: "",),
+      appBar: SimpleAppbar(description: "Unit System", pageName: "SETTINGS",pageTrailing: "",),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),

@@ -394,7 +394,7 @@ class _ChatState extends State<Chat> {
                   onTap: () => Get.dialog(
                       Dialog(
                         backgroundColor: Colors.transparent,
-                        insetPadding: EdgeInsets.only(left:20,bottom: 80,right: MediaQuery.of(context).size.width*0.4),
+                        insetPadding: EdgeInsets.only(left:15,bottom: 70,right: MediaQuery.of(context).size.width*0.1),
                         alignment: Alignment.bottomLeft,
                         child: Container(
                           height: 125,
@@ -469,17 +469,38 @@ class _ChatState extends State<Chat> {
                   )
                 ),
                 SizedBox(width: 10,),
-                Expanded(
-                    child: MyTextField(
-                        controller: messageController,
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  height: 50,
+                  width: MediaQuery.of(context).size.width*0.77,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: KDullBlack
+                  ),
+                  child: TextField(
+                    controller: messageController,
+                    style: TextStyle(color: KWhite),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
                       hintText: "Write message here...",
-                    )
+                      hintStyle: TextStyle(color: KWhite.withOpacity(0.5)),
+                      suffixIcon:  GestureDetector(
+                          onTap: sendTextMessage,
+                          child: Container(
+                              padding: EdgeInsets.all(10),
+                              height: 20,child: SvgPicture.asset('assets/images/send.svg'))
+                      ),
+                    ),
+                  ),
                 ),
+                // Expanded(
+                //     child: MyTextField(
+                //         controller: messageController,
+                //       hintText: "Write message here...",
+                //     )
+                // ),
                 SizedBox(width: 10,),
-                GestureDetector(
-                  onTap: sendTextMessage,
-                    child: SvgPicture.asset(Images.send)
-                ),
+
               ],
             ),
           ),

@@ -56,13 +56,13 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       body: SlidingUpPanel(
-        color: Colors.white.withOpacity(0.5),
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
+         color: Colors.white.withOpacity(0.5),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25)),
         isDraggable: true,
         backdropEnabled: true,
         backdropTapClosesPanel: true,
         minHeight: 135,
-        maxHeight: MediaQuery.of(context).size.height*0.8,
+        maxHeight: MediaQuery.of(context).size.height*0.88,
         body: SafeArea(
           child: Stack(
             children: [
@@ -186,8 +186,8 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
         collapsed: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-              color: KPureBlack,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
+              color: Colors.transparent,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
           ),
           child: PreviewCard(userDetail: userDetail,onTapUser: tapUser,),
         ),
@@ -195,9 +195,9 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
           child: Container(
             width: MediaQuery.of(context).size.width*0.9,
             padding: EdgeInsets.symmetric(horizontal: 20),
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
                 color: KPureBlack,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
             ),
             child: Column(
               children: [

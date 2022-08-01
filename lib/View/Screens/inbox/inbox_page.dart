@@ -42,7 +42,7 @@ class _InboxPageState extends State<InboxPage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: KbgBlack,
       drawer: MyDrawer(),
-      appBar: CustomAppbar(pageName: 'Inbox', description: "Messages & Notifications",pageTrailing: "",),
+      appBar: CustomAppbar(pageName: 'INBOX', description: "Messages & Notifications",pageTrailing: "",),
       bottomNavigationBar: BottomBar(pageIndex: 1,),
       body: Column(
         children: [

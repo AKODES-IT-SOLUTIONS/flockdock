@@ -19,7 +19,7 @@ class MyTextField extends StatelessWidget {
     this.onChanged,
     this.bgColor=KDullBlack,
     this.width=double.infinity,
-    this.hight=58.0,
+    this.hight=50.0,
     this.radius=30.0,
     this.minLines=1,
     this.maxLines=1,

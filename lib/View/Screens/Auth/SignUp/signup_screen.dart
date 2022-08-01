@@ -107,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  spaceVertical(50),
+                  spaceVertical(70),
                   Center(child: SvgPicture.asset(Images.logo,height: 76,width: 161,color: KWhite,)),
                   spaceVertical(50),
                   Center(
@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: 58,
+                          height: 50,
                           decoration: BoxDecoration(
                               color: KDullBlack,
                               borderRadius: BorderRadius.circular(30)),
@@ -150,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               children: [
                                 MyText(
                                   text: birthday,
-                                  color: KWhite,
+                                  color: KWhite.withOpacity(0.5),
                                   size: 16,
                                   fontFamily: "Proxima",
                                 ),
@@ -162,7 +162,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     Images.calendar,
                                     height: 21,
                                     width: 18,
-                                    color: Colors.white,
+                                    color: KWhite.withOpacity(0.5),
                                   ),
                                 ),
                               ],
@@ -173,7 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       spaceHorizontal(12),
                       Expanded(
                           child: Container(
-                        height: 58,
+                        height: 50,
                         decoration: BoxDecoration(
                             color: KDullBlack,
                             borderRadius: BorderRadius.circular(30)),
@@ -187,11 +187,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     Images.arrowDown,
                                     height: 9,
                                     width: 9,
+                                    color: KWhite.withOpacity(0.5),
                                   ),
                                   dropdownColor: KDullBlack,
                                   hint: MyText(
                                     text: "Gender",
-                                    color: KWhite,
+                                    color: KWhite.withOpacity(0.5),
                                     size: 16,
                                     fontFamily: "Proxima",
                                   ),
@@ -251,7 +252,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: MyText(
                             text:
                                 "I accept the terms, privacy policy, and conditions of cookies policy.",
-                            color: KWhite,
+                            color: KWhite.withOpacity(0.5),
                             weight: FontWeight.w400,
                             fontFamily: "Proxima",
                             size: 16,
@@ -276,8 +277,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MyText(
-                        text: "Already Have a Account?",
-                        size: 17,
+                        text: "Already have an account?",
+                        size: 16,
                         fontFamily: "Proxima",
                         color: KBlue,
                         weight: FontWeight.w700,
@@ -289,7 +290,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: MyText(
                           text: "Log In",
                           weight: FontWeight.w700,
-                          size: 17,
+                          size: 16,
                           color: KWhite,
                           fontFamily: "Proxima",
                         ),

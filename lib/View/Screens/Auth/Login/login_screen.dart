@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 builder: (context) => EnterEmail()));
                       },
                       child: MyText(
-                        text: "Forget Password?",
+                        text: "Forgot Password?",
                         color: KBlue,
                         decoration: TextDecoration.underline,
                         weight: FontWeight.w700,
@@ -103,8 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MyText(
-                        text: "Don't Have a Account?",
-                        size: 17,
+                        text: "Don't have an account?",
+                        size: 16,
                         fontFamily: "Proxima",
                         color: KBlue,
                         weight: FontWeight.w700,
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: MyText(
                         text: "Register Now",
                         weight: FontWeight.w700,
-                        size: 17,
+                        size: 16,
                         color: KWhite,
                         fontFamily: "Proxima",
                       ),

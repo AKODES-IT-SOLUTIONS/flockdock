@@ -73,14 +73,14 @@ class _EnterMobileNumberState extends State<EnterMobileNumber> {
                     align: TextAlign.center,
                     fontFamily: "Proxima",
                     size: 17,
-                    color: KWhite,
+                    color: KWhite.withOpacity(0.5),
                   ),
                   spaceVertical(38),
                   MyTextField(
                     textInputType: TextInputType.text,
                     controller: _mobileNumberController,
                     isObSecure: false,
-                    hintText: "+923012345678",
+                    hintText: "Enter Mobile Number",
                   ),
                   spaceVertical(28),
                   MyButton(

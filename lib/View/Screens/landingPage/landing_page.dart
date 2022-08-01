@@ -41,12 +41,12 @@ class _LandingPageState extends State<LandingPage> {
               ),
               spaceVertical(180),
               SizedBox(
-                height: 58,
+                height: 47,
                 width: double.infinity,
                 child: MyButton(
                   text: "Log In",
                   textWeight: FontWeight.w700,
-                  size: 22,
+                  size: 20,
                   fontFamily: "Proxima",
                   textColor: KWhite,
                   onPressed: () => Get.to(LoginScreen()),
@@ -55,13 +55,13 @@ class _LandingPageState extends State<LandingPage> {
               ),
               spaceVertical(14),
               SizedBox(
-                height: 58,
+                height: 47,
                 width: double.infinity,
                 child: MyButton(
                   textWeight: FontWeight.w700,
                   text: "Create Account",
                   fontFamily: "Proxima",
-                  size: 22,
+                  size: 20,
                   textColor: KWhite,
                   onPressed: () => Get.to(LoginWithSocial()),
                   buttonColor: KDullBlack,

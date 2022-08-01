@@ -57,7 +57,7 @@ class _EnterEmailState extends State<EnterEmail> {
                       Expanded(
                         child: Center(
                           child: MyText(
-                            text: "Forget Password",
+                            text: "Forgot Password",
                             color: KWhite,
                             weight: FontWeight.w700,
                             size: 22,
@@ -74,7 +74,7 @@ class _EnterEmailState extends State<EnterEmail> {
                     align: TextAlign.center,
                     fontFamily: "Proxima",
                     size: 17,
-                    color: KWhite,
+                    color: KWhite.withOpacity(0.5),
                   ),
                   spaceVertical(38),
                   MyTextField(

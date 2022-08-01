@@ -16,7 +16,7 @@ class MyButton extends StatefulWidget {
     this.textAlign,
     this.textWeight,
     this.fontFamily,
-    this.buttonHight=58.0,
+    this.buttonHight=50.0,
     this.buttonWidth=double.infinity
   });
 
