@@ -56,7 +56,7 @@ class _AllowLocationState extends State<AllowLocation> {
                 onPressed: _determinePosition,
                 fontFamily: "Proxima",
                 text: "Allow Location",
-                buttonColor: KBlue,
+                buttonColor: KMediumBlue,
                 size: 22,
                 textWeight: FontWeight.w700,
                 textColor: KWhite,

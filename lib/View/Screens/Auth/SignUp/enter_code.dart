@@ -104,7 +104,7 @@ class _EnterCodeState extends State<EnterCode> {
                     text: "Submit",
                     textWeight: FontWeight.w700,
                     textColor: KWhite,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                   ),
                   spaceVertical(15),
                   TextButton(

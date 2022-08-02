@@ -56,8 +56,9 @@ class _BottomBarState extends State<BottomBar> {
                   MyText(
                     text: "NEARBY",
                     color: pageIndex == 0?KWhite:Kunactive,
-                    size: pageIndex == 0?13:12,
+                    size: pageIndex == 0?12:10,
                     fontFamily: "Proxima",
+                    weight: FontWeight.bold,
                   )
 
                 ],
@@ -75,8 +76,9 @@ class _BottomBarState extends State<BottomBar> {
                   MyText(
                     text: "INBOX",
                     fontFamily: "Proxima",
+                    weight: FontWeight.bold,
                     color: pageIndex == 1?KWhite:Kunactive,
-                    size: pageIndex == 1?13:12,
+                    size: pageIndex == 1?12:10,
                   )
 
                 ],
@@ -96,8 +98,9 @@ class _BottomBarState extends State<BottomBar> {
                   MyText(
                     text: "DISCOVER",
                     fontFamily: "Proxima",
+                    weight: FontWeight.bold,
                     color: pageIndex == 2?KWhite:Kunactive,
-                    size: pageIndex == 2?13:12,
+                    size: pageIndex == 2?12:10,
                   )
 
                 ],
@@ -117,8 +120,9 @@ class _BottomBarState extends State<BottomBar> {
                   MyText(
                     text: "FAVOURITES",
                     fontFamily: "Proxima",
+                    weight: FontWeight.bold,
                     color: pageIndex == 3?KWhite:Kunactive,
-                    size: pageIndex == 3?13:12,
+                    size: pageIndex == 3?12:10,
                   )
 
                 ],

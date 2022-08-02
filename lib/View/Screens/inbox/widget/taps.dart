@@ -91,7 +91,7 @@ class Tap extends StatelessWidget {
                        ),
                      ),
                      SizedBox(height: 5,),
-                     Text("Sent you a Tap",style: proximaRegular.copyWith(color: KWhite,),),
+                     Text("Sent you a Tap",style: proximaRegular.copyWith(color: KWhite.withOpacity(0.5),),),
                   ],
                 ),
               ),

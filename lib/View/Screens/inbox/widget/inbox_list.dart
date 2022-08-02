@@ -80,7 +80,7 @@ class InboxList extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Text(inboxDetail!.message??'',style: proximaRegular.copyWith(color: KWhite,),),
+                    Text(inboxDetail!.message??'',style: proximaRegular.copyWith(color: KWhite.withOpacity(0.5),),),
                   ],
                 ),
               ),
@@ -166,7 +166,7 @@ class InboxList extends StatelessWidget {
                         Text(inboxDetail!.formattedTime??'',style: proximaRegular.copyWith(color: KDullBlack,),),
                       ],
                     ),
-                    Text(inboxDetail!.message?.trim()??'',style: proximaRegular.copyWith(color: KWhite,),),
+                    Text(inboxDetail!.message?.trim()??'',style: proximaRegular.copyWith(color: KWhite.withOpacity(0.5),),),
                     SizedBox(height: 5,),
                     (inboxDetail!.notificationType=="GroupJoinRequest"||inboxDetail!.notificationType=="GroupInviteRequest")&&inboxDetail!.status!="Responded"?
                     Row(

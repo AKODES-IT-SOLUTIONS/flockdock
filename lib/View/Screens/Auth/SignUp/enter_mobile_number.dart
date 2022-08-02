@@ -93,7 +93,7 @@ class _EnterMobileNumberState extends State<EnterMobileNumber> {
                     size: 17,
                     text: "Send",
                     textColor: KWhite,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                   )
                 ],
               ),

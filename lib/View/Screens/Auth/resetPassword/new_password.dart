@@ -98,7 +98,7 @@ class _NewPasswordState extends State<NewPassword> {
                     size: 17,
                     text: "Save",
                     textColor: KWhite,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                   )
                 ],
               ),

@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: "Log In",
                   textWeight: FontWeight.w700,
                   fontFamily: "Proxima",
-                  buttonColor: KBlue,
+                  buttonColor: KMediumBlue,
                   textColor: KWhite,
                   size: 22,
                 ),
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: "Don't have an account?",
                         size: 16,
                         fontFamily: "Proxima",
-                        color: KBlue,
+                        color: KMediumBlue,
                         weight: FontWeight.w700,
                       ),
                     TextButton(

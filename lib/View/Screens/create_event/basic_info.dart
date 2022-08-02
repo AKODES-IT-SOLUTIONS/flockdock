@@ -125,7 +125,7 @@ class _BasicInfoState extends State<BasicInfo> {
             SizedBox(height: 5,),
             Text("BASIC INFO",style: proximaBold.copyWith(color: KdullWhite),),
             SizedBox(height: 20,),
-            Text("Upload a cover photo",style: proximaBold.copyWith(color: KWhite),),
+            Text("Upload a cover photo",style: proximaBold.copyWith(color: KdullWhite),),
             SizedBox(height: 3,),
             GestureDetector(
               onTap: () async {
@@ -172,7 +172,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Starting Date",style: proximaBold.copyWith(color: KWhite),),
+                    Text("Starting Date",style: proximaBold.copyWith(color: KdullWhite),),
                     SizedBox(height: 5,),
                     GestureDetector(
                       onTap: () async {
@@ -222,8 +222,8 @@ class _BasicInfoState extends State<BasicInfo> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(eventDetail.startingDate??'',style: proximaBold.copyWith(color: KWhite),),
-                              SvgPicture.asset(Images.date),
+                              Text(eventDetail.startingDate??'',style: proximaBold.copyWith(color: KdullWhite),),
+                              SvgPicture.asset(Images.date,color: KdullWhite,),
                             ],
                           ),
                         ),
@@ -235,7 +235,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Ending Date",style: proximaBold.copyWith(color: KWhite),),
+                    Text("Ending Date",style: proximaBold.copyWith(color: KdullWhite),),
                     SizedBox(height: 5,),
                     GestureDetector(
                       onTap: () async {
@@ -290,8 +290,8 @@ class _BasicInfoState extends State<BasicInfo> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(eventDetail.endingDate??'',style: proximaBold.copyWith(color: KWhite),),
-                              SvgPicture.asset(Images.date),
+                              Text(eventDetail.endingDate??'',style: proximaBold.copyWith(color: KdullWhite),),
+                              SvgPicture.asset(Images.date,color: KdullWhite,),
                             ],
                           ),
                         ),
@@ -302,10 +302,11 @@ class _BasicInfoState extends State<BasicInfo> {
               ],
             ),
             SizedBox(height: 20,),
-            Text("Address",style: proximaBold.copyWith(color: KWhite),),
+            Text("Address",style: proximaBold.copyWith(color: KdullWhite),),
             SizedBox(height: 5,),
             MyTextField(
               verticalPadding: 0.0,
+              clr: KdullWhite,
               hight: 50.0, controller: _addressController,
               onChanged: (value) async {
                 if(value==""){
@@ -364,13 +365,13 @@ class _BasicInfoState extends State<BasicInfo> {
                 ),
               ),
             SizedBox(height: 20,),
-            Text("Map view",style: proximaBold.copyWith(color: KWhite),),
+            Text("Map view",style: proximaBold.copyWith(color: KdullWhite),),
             SizedBox(height: 5,),
             Stack(
               children: [
                 Container(
                   width: double.infinity,
-                  height: 150,
+                  height: 100,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: GoogleMap(
@@ -400,7 +401,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 ),
                 Container(
                     width: double.infinity,
-                    height: 150,
+                    height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -408,7 +409,7 @@ class _BasicInfoState extends State<BasicInfo> {
               ],
             ),
             SizedBox(height: 20,),
-            Text("Additional Instructions",style: proximaBold.copyWith(color: KWhite),),
+            Text("Additional Instructions",style: proximaBold.copyWith(color: KdullWhite),),
             SizedBox(height: 5,),
             MyTextField(
               radius: 5.0,

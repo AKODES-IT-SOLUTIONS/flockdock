@@ -36,12 +36,12 @@ class SocialButton extends StatelessWidget {
         color: buttonColor,
         borderRadius: BorderRadius.circular(30),
       ),
-      height: 50,
+      height: 55,
       width: double.infinity,
       child: TextButton(
         onPressed: onPressed,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          SvgPicture.asset(Img,height: 22),
+          SvgPicture.asset(Img,height: 26),
           SizedBox(
             width: 20,
           ),

@@ -94,10 +94,10 @@ class _ChatState extends State<Chat> {
                             onTap: () => Get.dialog(
                               Dialog(
                                 backgroundColor: Colors.transparent,
-                                insetPadding: EdgeInsets.only(top: 90,left: MediaQuery.of(context).size.width*0.6),
+                                insetPadding: EdgeInsets.only(top: 90,left: MediaQuery.of(context).size.width*0.52,right: 10),
                                 alignment: Alignment.topRight,
                                 child: Container(
-                                  height: 110,
+                                  height: 120,
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   decoration: BoxDecoration(
                                       color: KDullBlack,
@@ -106,14 +106,18 @@ class _ChatState extends State<Chat> {
                                   ),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SizedBox(height: 10,),
+
                                       InkWell(
                                           onTap: (){
                                             Get.back();
                                             Get.to(PicturesPage(id: widget.id,));
                                           },
-                                          child: Text('Pictures', style: proximaBold.copyWith(color: KWhite),)
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 5),
+                                            child: Text('Pictures', style: proximaBold.copyWith(color: KWhite),),
+                                          )
                                       ),
                                       Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 10),),
                                       InkWell(
@@ -121,7 +125,9 @@ class _ChatState extends State<Chat> {
                                             Get.back();
                                             Get.dialog(ReportDialog(onReport: (val){reportUser(val);},));
                                           },
-                                          child: Text('Report', style: proximaBold.copyWith(color: KWhite),)
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 5),                                            child: Text('Report', style: proximaBold.copyWith(color: KWhite),),
+                                          )
                                       ),
                                       Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 10),),
                                       InkWell(
@@ -129,7 +135,10 @@ class _ChatState extends State<Chat> {
                                             Get.back();
                                             blockUser();
                                           },
-                                          child: Text('Block', style: proximaBold.copyWith(color: KWhite),)
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 5),
+                                            child: Text('Block', style: proximaBold.copyWith(color: KWhite),),
+                                          )
                                       ),
 
 
@@ -394,11 +403,11 @@ class _ChatState extends State<Chat> {
                   onTap: () => Get.dialog(
                       Dialog(
                         backgroundColor: Colors.transparent,
-                        insetPadding: EdgeInsets.only(left:15,bottom: 70,right: MediaQuery.of(context).size.width*0.1),
+                        insetPadding: EdgeInsets.only(left:15,bottom: 70,right: MediaQuery.of(context).size.width*0.22),
                         alignment: Alignment.bottomLeft,
                         child: Container(
-                          height: 125,
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          height: 135,
+                          padding: EdgeInsets.symmetric(horizontal: 25),
                           decoration: BoxDecoration(
                             color: KDullBlack,
                             borderRadius: BorderRadius.circular(20),
@@ -406,8 +415,8 @@ class _ChatState extends State<Chat> {
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(height: 15,),
                               InkWell(
                                   onTap: () async {
                                     Get.back();
@@ -422,7 +431,7 @@ class _ChatState extends State<Chat> {
                                     ],
                                   ),
                               ),
-                              SizedBox(height: 15,),
+                              SizedBox(height: 17,),
                               InkWell(
                                   onTap: (){
                                     Get.back();
@@ -436,7 +445,7 @@ class _ChatState extends State<Chat> {
                                     ],
                                   ),
                               ),
-                              SizedBox(height: 15,),
+                              SizedBox(height: 17,),
                               InkWell(
                                   onTap: (){
                                     Get.back();

@@ -45,26 +45,26 @@ class JoinDialog extends StatelessWidget {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: MyButton(
                       text: "Cancel",
                       size: Dimensions.fontSizeLarge,
                       textColor: KWhite,
                       buttonColor: KdullWhite,
-                      buttonHight: 35.0,
-                      buttonWidth: 100.0,
+                      buttonHight: 30.0,
+                      buttonWidth: 106.0,
                       onPressed: () => Get.back(),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: MyButton(
                       text: "Confirm",
                       size: Dimensions.fontSizeLarge,
                       textColor: KWhite,
                       buttonColor: KBlue,
-                      buttonHight: 35.0,
-                      buttonWidth: 100.0,
+                      buttonHight: 30.0,
+                      buttonWidth: 106.0,
                       onPressed: onConfirmPressed,
                     ),
                   ),

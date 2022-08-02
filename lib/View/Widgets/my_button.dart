@@ -16,7 +16,7 @@ class MyButton extends StatefulWidget {
     this.textAlign,
     this.textWeight,
     this.fontFamily,
-    this.buttonHight=50.0,
+    this.buttonHight=55.0,
     this.buttonWidth=double.infinity
   });
 
@@ -38,7 +38,7 @@ class _MyButtonState extends State<MyButton> {
           gradient: LinearGradient(
               colors: [
                 widget.buttonColor,
-                widget.buttonColor==KBlue?KDarkBlue:widget.buttonColor,
+                widget.buttonColor==KMediumBlue?KDarkBlue:widget.buttonColor,
               ],
               stops: [
                 0.0,

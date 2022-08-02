@@ -269,7 +269,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     fontFamily: "Proxima",
                     textWeight: FontWeight.w700,
                     onPressed: _register,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                     textColor: KWhite,
                   ),
                   spaceVertical(20),

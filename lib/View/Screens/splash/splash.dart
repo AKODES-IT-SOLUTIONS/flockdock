@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: KBlue,
+        backgroundColor: KMediumBlue,
         body: Center(child: SvgPicture.asset(Images.logo,
           height: 110,
           width: 110,

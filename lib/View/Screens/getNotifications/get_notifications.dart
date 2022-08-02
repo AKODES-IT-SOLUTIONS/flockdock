@@ -56,7 +56,7 @@ class _RecieveNotificationsState extends State<RecieveNotifications> {
                 onPressed: notify,
                 fontFamily: "Proxima",
                 text: "Notify Me",
-                buttonColor: KBlue,
+                buttonColor: KMediumBlue,
                 size: 22,
                 textWeight: FontWeight.w700,
                 textColor: KWhite,

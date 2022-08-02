@@ -58,337 +58,339 @@ class _GroupViewState extends State<GroupView> {
     ));
     return Scaffold(
       backgroundColor: KbgBlack,
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            groupData?.coverPhoto==null?
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.3,
-                ):
-            Stack(
-              children: [
-                Image.network(
-                    groupData?.coverPhoto??'',
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.3,
-                  fit: BoxFit.cover,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 25.0,left: 15),
-                  child: GestureDetector(onTap: () => Get.back(),child: Icon(Icons.arrow_back_ios_sharp,color: KWhite,)),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 20,
-                  width: 20,
-                  margin: const EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: KWhite,width: 1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: SvgPicture.asset(Images.fire),
-                  ),
-                ),
-                Text(groupData?.category?.category??'',style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
-                Expanded(child: SizedBox()),
-                isJoined&&!isHost?GestureDetector(
-                  onTap: leaveGroup,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text("LEAVE GROUP",style: proximaBold.copyWith(color: Colors.redAccent,fontSize: Dimensions.fontSizeSmall)),
-                  ),
-                ):SizedBox(),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              groupData?.coverPhoto==null?
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height*0.3,
+                  ):
+              Stack(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text("From",style: proximaBold.copyWith(color: KdullWhite,)),
-                      SizedBox(height: 10,),
-                      Text("To",style: proximaBold.copyWith(color: KdullWhite)),
-                    ],
+                  Image.network(
+                      groupData?.coverPhoto??'',
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height*0.3,
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(width: 10,),
-                  SvgPicture.asset(Images.event_date),
-                  SizedBox(width: 10,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(groupData?.formattedFromDatetime??'',style: proximaBold.copyWith(color: KdullWhite,)),
-                      SizedBox(height: 10,),
-                      Text(groupData?.formattedToDatetime??'',style: proximaBold.copyWith(color: KdullWhite)),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25.0,left: 15),
+                    child: GestureDetector(onTap: () => Get.back(),child: Icon(Icons.arrow_back_ios_sharp,color: KWhite,)),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 20,),
-            Container(
-              color: Colors.white.withOpacity(0.2),
-              width: MediaQuery.of(context).size.width*0.85,
-              height: 1,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: isJoined?30:50,vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
                 children: [
-                  if(groupData!.isUserAttending! && AppData().userdetail!.usersId!=groupData!.usersId)
-                    ActionWidget(text: "ATTENDING", icon: Images.attending,color: KBlue),
-                  isHost?
-                  ActionWidget(text: "EDIT", icon: Images.edit,onTap: () => Get.to(ChooseCategory(fromEdit: true,groupId: groupData!.groupId,))):
-                  ActionWidget(text: "INTERESTED", icon: Images.star,onTap: interestGroup,color: groupData!.isUserInterested!?KBlue:KWhite),
-                  isHost?
-                  ActionWidget(text: "CANCEL", icon: Images.close,onTap: cancelGroup):
-                  ActionWidget(text: "SHARE", icon: Images.share),
-                  isHost?
-                  ActionWidget(text: "EDIT PARTICIPANTS", icon: Images.multi_users,onTap: (){
-                    Get.to(HostInvite(fromEditParticipant: true,groupId: groupData?.groupId,guest: groupData?.members,));
-                  }):
-                  ActionWidget(text: "REPORT", icon: Images.report,onTap: reportGroup,color: groupData!.isUserReported!?KBlue:KWhite),
-                ],
-              ),
-            ),
-            Container(
-              color: Colors.white.withOpacity(0.2),
-              width: MediaQuery.of(context).size.width*0.85,
-              height: 1,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
-                child: Text("Address",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 10),
-                child: Text(groupData?.address??'',style: proximaRegular.copyWith(color: KWhite,fontSize: Dimensions.fontSizeSmall)),
-              ),
-            ),
-
-            Stack(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width*0.9,
-                  height: 80,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: GoogleMap(
-                      markers: markers,
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(groupData!.groupLat??0,groupData!.groupLong??0),
-                        zoom: 10,
-                      ),
-                      onMapCreated: (GoogleMapController mapController) {
-
-                      },
-                      zoomControlsEnabled: false,
-                      onCameraMove: (CameraPosition cameraPosition) async {
-
-                      },
-                      onCameraMoveStarted: () {
-
-                      },
-                      onCameraIdle: () async {
-
-                      },
+                  Container(
+                    height: 20,
+                    width: 20,
+                    margin: const EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: KWhite,width: 1),
+                      shape: BoxShape.circle,
                     ),
-                  )
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width*0.9,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: SvgPicture.asset(Images.fire),
+                    ),
                   ),
+                  Text(groupData?.category?.category??'',style: proximaExtraBold.copyWith(color: KWhite,fontSize: 24,fontWeight: FontWeight.w800)),
+                  Expanded(child: SizedBox()),
+                  isJoined&&!isHost?GestureDetector(
+                    onTap: leaveGroup,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text("LEAVE GROUP",style: proximaBold.copyWith(color: Colors.redAccent,fontSize: Dimensions.fontSizeSmall)),
+                    ),
+                  ):SizedBox(),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text("From",style: proximaBold.copyWith(color: KdullWhite,)),
+                        SizedBox(height: 10,),
+                        Text("To",style: proximaBold.copyWith(color: KdullWhite)),
+                      ],
+                    ),
+                    SizedBox(width: 10,),
+                    SvgPicture.asset(Images.event_date),
+                    SizedBox(width: 10,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(groupData?.formattedFromDatetime??'',style: proximaBold.copyWith(color: KdullWhite,)),
+                        SizedBox(height: 10,),
+                        Text(groupData?.formattedToDatetime??'',style: proximaBold.copyWith(color: KdullWhite)),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+              ),
+              SizedBox(height: 20,),
+              Container(
+                color: Colors.white.withOpacity(0.2),
+                width: MediaQuery.of(context).size.width*0.85,
+                height: 1,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: isJoined?30:50,vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${isHost?"PARTICIPANTS":"ATTENDING"} ("+groupData!.totalAttendees.toString()+")",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
-                    if(isJoined&&!isHost)Text("You are going to this event",style: proximaSemiBold.copyWith(color: KWhite.withOpacity(0.5),fontSize: Dimensions.fontSizeSmall)),
+                    if(groupData!.isUserAttending! && AppData().userdetail!.usersId!=groupData!.usersId)
+                      ActionWidget(text: "ATTENDING", icon: Images.attending,color: KBlue),
+                    isHost?
+                    ActionWidget(text: "EDIT", icon: Images.edit,onTap: () => Get.to(ChooseCategory(fromEdit: true,groupId: groupData!.groupId,))):
+                    ActionWidget(text: "INTERESTED", icon: Images.star,onTap: interestGroup,color: groupData!.isUserInterested!?KBlue:KWhite),
+                    isHost?
+                    ActionWidget(text: "CANCEL", icon: Images.close,onTap: cancelGroup):
+                    ActionWidget(text: "SHARE", icon: Images.share),
+                    isHost?
+                    ActionWidget(text: "EDIT PARTICIPANTS", icon: Images.multi_users,onTap: (){
+                      Get.to(HostInvite(fromEditParticipant: true,groupId: groupData?.groupId,guest: groupData?.members,));
+                    }):
+                    ActionWidget(text: "REPORT", icon: Images.report,onTap: reportGroup,color: groupData!.isUserReported!?KBlue:KWhite),
                   ],
                 ),
               ),
-            ),
+              Container(
+                color: Colors.white.withOpacity(0.2),
+                width: MediaQuery.of(context).size.width*0.85,
+                height: 1,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+                  child: Text("Address",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 10),
+                  child: Text(groupData?.address??'',style: proximaRegular.copyWith(color: KWhite,fontSize: Dimensions.fontSizeSmall)),
+                ),
+              ),
 
-            Container(
-              width: MediaQuery.of(context).size.width*0.9,
-              child: Wrap(
-                spacing: 8,
-                runSpacing: 10,
+              Stack(
                 children: [
-                  for(int index=0;index<groupData!.members!.length;index++)
-                    Container(
-                      width: MediaQuery.of(context).size.width*0.16,
-                      height: MediaQuery.of(context).size.width*0.16,
-                      child: InkWell(
-                        //onTap: () => Get.to(ProfileView(userId: groupData!.members![index].usersId,)),
-                        child: ProfileContainer(
-                            img: groupData!.members![index].profilePicture??AppConstants.placeholder,
-                            profileName: groupData!.members![index].userName??'',
-                          isHost: groupData!.members![index].usersId==groupData!.usersId,
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: 80,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: GoogleMap(
+                        markers: markers,
+                        initialCameraPosition: CameraPosition(
+                          target: LatLng(groupData!.groupLat??0,groupData!.groupLong??0),
+                          zoom: 10,
                         ),
+                        onMapCreated: (GoogleMapController mapController) {
+
+                        },
+                        zoomControlsEnabled: false,
+                        onCameraMove: (CameraPosition cameraPosition) async {
+
+                        },
+                        onCameraMoveStarted: () {
+
+                        },
+                        onCameraIdle: () async {
+
+                        },
                       ),
+                    )
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                     ),
+                  ),
                 ],
               ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
-                child: Text("FEATURES",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("${isHost?"PARTICIPANTS":"ATTENDING"} ("+groupData!.totalAttendees.toString()+")",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+                      if(isJoined&&!isHost)Text("You are going to this event",style: proximaSemiBold.copyWith(color: KWhite.withOpacity(0.5),fontSize: Dimensions.fontSizeSmall)),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,),
+
+              Container(
+                width: MediaQuery.of(context).size.width*0.9,
                 child: Wrap(
-                  spacing: 10,
+                  spacing: 8,
                   runSpacing: 10,
                   children: [
-                    for(int i=0;i<groupData!.features!.length;i++)
-                      FeatureItem(text: groupData!.features![i].feature??''),
+                    for(int index=0;index<groupData!.members!.length;index++)
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.16,
+                        height: MediaQuery.of(context).size.width*0.16,
+                        child: InkWell(
+                          //onTap: () => Get.to(ProfileView(userId: groupData!.members![index].usersId,)),
+                          child: ProfileContainer(
+                              img: groupData!.members![index].profilePicture??AppConstants.placeholder,
+                              profileName: groupData!.members![index].userName??'',
+                            isHost: groupData!.members![index].usersId==groupData!.usersId,
+                          ),
+                        ),
+                      ),
                   ],
-                )
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
-                child: Text("IMPORTANT RULES",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+                  child: Text("FEATURES",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+                ),
               ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0,),
                   child: Wrap(
-                    spacing: 8,
+                    spacing: 10,
+                    runSpacing: 10,
                     children: [
-                      for(int i=0;i<groupData!.rules!.length;i++)
-                        if(groupData!.rules![i].answer=="No")
-                          RulesItem(text: groupData!.rules![i].importantRule!,isAllowed: false),
+                      for(int i=0;i<groupData!.features!.length;i++)
+                        FeatureItem(text: groupData!.features![i].feature??''),
                     ],
                   )
+                ),
               ),
-            ),
-            SizedBox(height: 2,),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0,),
-                  child: Wrap(
-                    spacing: 8,
-                    children: [
-                      for(int i=0;i<groupData!.rules!.length;i++)
-                        if(groupData!.rules![i].answer=="Yes")
-                          RulesItem(text: groupData!.rules![i].importantRule!,),
-                    ],
-                  )
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+                  child: Text("IMPORTANT RULES",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+                ),
               ),
-            ),
-            SizedBox(height: 10,),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0,),
+                    child: Wrap(
+                      spacing: 8,
+                      children: [
+                        for(int i=0;i<groupData!.rules!.length;i++)
+                          if(groupData!.rules![i].answer=="No")
+                            RulesItem(text: groupData!.rules![i].importantRule!,isAllowed: false),
+                      ],
+                    )
+                ),
+              ),
+              SizedBox(height: 2,),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0,),
+                    child: Wrap(
+                      spacing: 8,
+                      children: [
+                        for(int i=0;i<groupData!.rules!.length;i++)
+                          if(groupData!.rules![i].answer=="Yes")
+                            RulesItem(text: groupData!.rules![i].importantRule!,),
+                      ],
+                    )
+                ),
+              ),
+              SizedBox(height: 10,),
 
-            isJoined?Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 5),
-                child: Text("GROUP MESSAGES",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+              isJoined?Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 5),
+                  child: Text("GROUP MESSAGES",style: proximaExtraBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
+                ),
+              ):Container(
+                width: MediaQuery.of(context).size.width,
+                height: 73,
+                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                color: KDullBlack.withOpacity(0.5),
+                child: MyButton(
+                  text: "Join",
+                  textColor: KWhite,
+                  size: Dimensions.fontSizeExtraLarge,
+                  buttonColor: KMediumBlue,
+                  buttonHight: 53.0,
+                  buttonWidth: MediaQuery.of(context).size.width*0.8,
+                  onPressed: () => Get.dialog(JoinDialog(onConfirmPressed: (){
+                    Get.back();
+                    joinGroup();
+                  },)),
+                ),
               ),
-            ):Container(
-              width: MediaQuery.of(context).size.width,
-              height: 80,
-              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-              color: KDullBlack.withOpacity(0.5),
-              child: MyButton(
-                text: "Join",
-                textColor: KWhite,
-                size: Dimensions.fontSizeExtraLarge,
-                buttonColor: KBlue,
-                buttonHight: 60.0,
-                buttonWidth: MediaQuery.of(context).size.width*0.8,
-                onPressed: () => Get.dialog(JoinDialog(onConfirmPressed: (){
-                  Get.back();
-                  joinGroup();
-                },)),
+              if(isJoined)SizedBox(
+                height: message.isEmpty?0:message.length==1?hight*0.1:message.length==2?hight*0.2:hight*0.3,
+                child: ListView.builder(
+                  reverse: true,
+                  padding: EdgeInsets.zero,
+                    physics: BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: message.length,
+                    itemBuilder: (context,index){
+                      return Message(message: message[index]);
+                    }
+                ),
               ),
-            ),
-            if(isJoined)SizedBox(
-              height: message.isEmpty?0:message.length==1?hight*0.1:message.length==2?hight*0.2:hight*0.3,
-              child: ListView.builder(
-                reverse: true,
-                padding: EdgeInsets.zero,
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: message.length,
-                  itemBuilder: (context,index){
-                    return Message(message: message[index]);
-                  }
-              ),
-            ),
-            if(isJoined)Container(
-              decoration: BoxDecoration(
-                color: KDullBlack,
-                borderRadius: BorderRadius.circular(40)
-              ),
-              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width*0.55,
-                    child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: KWhite,
-                        controller: messageController,
-                        autofocus: false,
-                        style: proximaBold.copyWith(color: KWhite),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Write a message",
-                          hintStyle: proximaBold.copyWith(color: Colors.white.withOpacity(0.7))
-                        )
+              if(isJoined)Container(
+                decoration: BoxDecoration(
+                  color: KDullBlack,
+                  borderRadius: BorderRadius.circular(40)
+                ),
+                margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.55,
+                      child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          cursorColor: KWhite,
+                          controller: messageController,
+                          autofocus: false,
+                          style: proximaBold.copyWith(color: KWhite),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Write a message",
+                            hintStyle: proximaBold.copyWith(color: Colors.white.withOpacity(0.7))
+                          )
+                      ),
                     ),
-                  ),
-                  MyButton(
-                    text: "Send",
-                    size: Dimensions.fontSizeLarge,
-                    textColor: KWhite,
-                    buttonColor: KBlue,
-                    buttonHight: 35.0,
-                    buttonWidth: 75.0,
-                    onPressed: sendMessage,
-                  ),
-                ],
+                    MyButton(
+                      text: "Send",
+                      size: Dimensions.fontSizeLarge,
+                      textColor: KWhite,
+                      buttonColor: KBlue,
+                      buttonHight: 35.0,
+                      buttonWidth: 75.0,
+                      onPressed: sendMessage,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

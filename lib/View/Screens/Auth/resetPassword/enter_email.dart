@@ -90,7 +90,7 @@ class _EnterEmailState extends State<EnterEmail> {
                     size: 17,
                     text: "Send",
                     textColor: KWhite,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                     textWeight: FontWeight.w700,
                   )
                 ],

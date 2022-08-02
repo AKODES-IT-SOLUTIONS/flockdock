@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
 
   }
 
+
   Future<void> getPosition() async {
     position= await _determinePosition();
     await updateLocation();
@@ -370,9 +371,10 @@ class _HomePageState extends State<HomePage> {
                 : isGroup == true?
                 Expanded(
                   child: GridView.builder(
+                    physics: BouncingScrollPhysics(),
                       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
-                          childAspectRatio: 4 / 3,
+                          childAspectRatio: 4 / 2,
                           crossAxisSpacing: 13,
                           mainAxisSpacing: 13,
                       ),
@@ -428,17 +430,25 @@ class _HomePageState extends State<HomePage> {
     print(AppData().userdetail!.latitude);
     print(AppData().userdetail!.longitude);
     var response;
+    openLoadingDialog(context, "Loading");
     response = await DioService.post('ended_group_members', {
       "userId": AppData().userdetail!.usersId,
       "userLat": AppData().userdetail!.latitude.toString(),
       "userLong": AppData().userdetail!.longitude.toString()
     });
+    print("response----0-------- ${response}");
     if(response['status']=='success'){
+
       var jsonData= response['data'] as List;
       endedGroupMembers=jsonData.map((e) => UserDetail.fromJson(e)).toList();
       endedGroupMembers!.isNotEmpty?Get.to(() =>EventEnd(endedGroupMembers: endedGroupMembers,)):null;
+
+      Navigator.pop(context);
+      Navigator.pop(context);
     }
     else{
+      Navigator.pop(context);
+
       print(response['message']);
       //showCustomSnackBar(response['message']);
     }

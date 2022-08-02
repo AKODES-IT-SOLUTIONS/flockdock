@@ -90,7 +90,7 @@ class _OTPCodeState extends State<OTPCode> {
                     size: 17,
                     text: "Send",
                     textColor: KWhite,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                   )
                 ],
               ),
