@@ -62,7 +62,6 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Change
       backgroundColor: KbgBlack,
       appBar: SimpleAppbar(description: "Messages", pageName: "INBOX",pageTrailing: "",),
       body: Column(

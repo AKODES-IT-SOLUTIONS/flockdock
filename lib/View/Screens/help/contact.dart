@@ -115,7 +115,7 @@ class _ContactState extends State<Contact> {
             MyButton(
               text: "Submit",
               textColor: KWhite,
-              buttonColor: KBlue,
+              buttonColor: KMediumBlue,
               buttonHight: 50.0,
               onPressed: contactQueries,
             ),
