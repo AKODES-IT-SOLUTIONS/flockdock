@@ -43,29 +43,35 @@ class ReportBlockDialog extends StatelessWidget {
               SizedBox(height: 20,),
               Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+    Container(
+    height: 35,
+    width: MediaQuery.of(context).size.width/3.5,
+    child: MyButton(
+    onPressed: onReport,
+    buttonColor: KMediumBlue,
+    text: "Apply",
+    textColor: KWhite,
+    textWeight: FontWeight.w700,
+    fontFamily: "Proxima",
+    size: 16,
+    ),
+
+    ),
+                  SizedBox(width: 10,),
+
+                  Container(
+                    height: 35,
+                    width: MediaQuery.of(context).size.width/3.5,
                     child: MyButton(
-                      text: "Report",
-                      size: Dimensions.fontSizeLarge,
-                      textColor: KWhite,
-                      buttonColor: KBlue,
-                      buttonHight: 35.0,
-                      buttonWidth: 100.0,
-                      onPressed: onReport,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MyButton(
-                      text: "Block",
-                      size: Dimensions.fontSizeLarge,
-                      textColor: KWhite,
-                      buttonColor: KBlue,
-                      buttonHight: 35.0,
-                      buttonWidth: 100.0,
                       onPressed: onBlock,
+                      buttonColor: KMediumBlue,
+                      text: "Apply",
+                      textColor: KWhite,
+                      textWeight: FontWeight.w700,
+                      fontFamily: "Proxima",
+                      size: 16,
                     ),
+
                   ),
                 ],
               )

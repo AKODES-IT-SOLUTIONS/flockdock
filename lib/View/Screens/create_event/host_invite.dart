@@ -209,14 +209,21 @@ class _HostInviteState extends State<HostInvite> {
             ),
             Align(
               alignment: Alignment.center,
-              child: MyButton(
-                text: "DONE",
-                textColor: KWhite,
-                buttonColor: KBlue,
-                buttonHight: 35.0,
-                buttonWidth: 80.0,
-                onPressed: () => widget.fromEditParticipant?editParticipants():Get.back(),
+              child:Container(
+                height: 35,
+                width: 80,
+                child: MyButton(
+                  onPressed: () => widget.fromEditParticipant?editParticipants():Get.back(),
+                  buttonColor: KMediumBlue,
+                  text: "Done",
+                  textColor: KWhite,
+                  textWeight: FontWeight.w700,
+                  fontFamily: "Proxima",
+                  size: 16,
+                ),
+
               ),
+
             ),
             if(GetPlatform.isIOS)SizedBox(height: 8,),
           ],

@@ -306,7 +306,7 @@ class _BasicInfoState extends State<BasicInfo> {
             SizedBox(height: 5,),
             MyTextField(
               verticalPadding: 0.0,
-              clr: KdullWhite,
+
               hight: 50.0, controller: _addressController,
               onChanged: (value) async {
                 if(value==""){

@@ -73,20 +73,26 @@ class _EventSuccessState extends State<EventSuccess> {
               ],
             ),
           ),
-          Padding(
-            padding:  EdgeInsets.only(bottom: GetPlatform.isIOS?16.0:8.0),
-            child: MyButton(
-              text: "Done",
-              textColor: KWhite,
-              buttonColor: KBlue,
-              buttonHight: 35.0,
-              buttonWidth: 80.0,
-              onPressed: () {
-                eventDetail=EventDetail(features: [],tribes: [],importantRules: [],guests: [],userGuests: []);
-                Get.offAll(HomePage());
-              },
-            ),
-          )
+      Padding(
+        padding:  EdgeInsets.only(bottom: GetPlatform.isIOS?16.0:8.0),
+        child: Container(
+          height: 35,
+          width: 80,
+          child: MyButton(
+            onPressed: () {
+              eventDetail=EventDetail(features: [],tribes: [],importantRules: [],guests: [],userGuests: []);
+              Get.offAll(HomePage());
+            },
+            buttonColor: KMediumBlue,
+            text: "Done",
+            textColor: KWhite,
+            textWeight: FontWeight.w700,
+            fontFamily: "Proxima",
+            size: 16,
+          ),
+
+      )
+      )
         ],
       ),
     );

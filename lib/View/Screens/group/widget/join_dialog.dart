@@ -56,17 +56,19 @@ class JoinDialog extends StatelessWidget {
                       onPressed: () => Get.back(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(6.0),
+                  Container(
+                    height: 35,
+                    width: MediaQuery.of(context).size.width/3.5,
                     child: MyButton(
-                      text: "Confirm",
-                      size: Dimensions.fontSizeLarge,
-                      textColor: KWhite,
-                      buttonColor: KBlue,
-                      buttonHight: 30.0,
-                      buttonWidth: 106.0,
                       onPressed: onConfirmPressed,
+                      buttonColor: KMediumBlue,
+                      text: "Confirm",
+                      textColor: KWhite,
+                      textWeight: FontWeight.w700,
+                      fontFamily: "Proxima",
+                      size: 16,
                     ),
+
                   ),
                 ],
               )

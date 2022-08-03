@@ -261,7 +261,8 @@ class _GuestState extends State<Guest> {
           ),
           Padding(
             padding:EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-            child: BottomNavigator(selected: 4,trailing:"FINISH",onTapLeading: () => Get.back(),onTapTrailing: eventDetail.fromEdit?editEvent:createEvent),
+            child: BottomNavigator(selected: 4,trailing:"FINISH",
+                onTapLeading: () => Get.back(),onTapTrailing: eventDetail.fromEdit?editEvent:createEvent),
           ),
         ],
       ),

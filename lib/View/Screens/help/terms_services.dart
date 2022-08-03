@@ -94,7 +94,7 @@ class _TermsServicesState extends State<TermsServices> {
                   MyButton(
                     text: "Accept",
                     textColor: KWhite,
-                    buttonColor: KBlue,
+                    buttonColor: KMediumBlue,
                     buttonHight: 30.0,
                     buttonWidth: 80.0,
                     onPressed: (){},

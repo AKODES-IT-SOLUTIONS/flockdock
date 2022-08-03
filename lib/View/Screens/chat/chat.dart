@@ -67,140 +67,140 @@ class _ChatState extends State<Chat> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () => Get.back(),
+                    child: Row(
+                      children: [
+                        Icon(Icons.arrow_back_ios_rounded,color: KDullBlack,size: 20,),
+                        Text("Back",style: proximaBold.copyWith(color: KdullWhite)),
+                      ],
+                    ),
+                  ),
+                  Text(widget.name,style: proximaBold.copyWith(color: KWhite)),
+                  InkWell(
+                    onTap: () => Get.dialog(
+                        Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: EdgeInsets.only(top: 90,left: MediaQuery.of(context).size.width*0.52,right: 10),
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            height: 120,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: KDullBlack,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: KDullBlack,width: 1),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+
+                                InkWell(
+                                    onTap: (){
+                                      Get.back();
+                                      Get.to(PicturesPage(id: widget.id,));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Text('Pictures', style: proximaBold.copyWith(color: KWhite),),
+                                    )
+                                ),
+                                Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 10),),
+                                InkWell(
+                                    onTap: (){
+                                      Get.back();
+                                      Get.dialog(ReportDialog(onReport: (val){reportUser(val);},));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),                                            child: Text('Report', style: proximaBold.copyWith(color: KWhite),),
+                                    )
+                                ),
+                                Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 10),),
+                                InkWell(
+                                    onTap: (){
+                                      Get.back();
+                                      blockUser();
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Text('Block', style: proximaBold.copyWith(color: KWhite),),
+                                    )
+                                ),
+
+
+                              ],
+                            ),
+                          ),
+                        )
+                    ),
+                    child: Center(
+                        child:  Icon(Icons.more_vert,size:20,color: Colors.grey.withOpacity(0.5),)
+                    ),
+                  )
+                  // PopupMenuButton(
+                  //   shape: Border.all(width: 1,color: KdullWhite,),
+                  //   padding: EdgeInsets.all(10),
+                  //   color: KDullBlack,
+                  //     child: Center(
+                  //         child:  Icon(Icons.more_vert,size:20,color: Colors.grey.withOpacity(0.5),)
+                  //     ),
+                  //     itemBuilder: (context) => [
+                  //       PopupMenuItem(
+                  //         onTap: () => Get.to(PicturesPage()),
+                  //         padding:const EdgeInsets.symmetric(vertical: 0,horizontal: 8),
+                  //         height:20,
+                  //         child: Column(
+                  //           children: [
+                  //             Text('Pictures', style: proximaBold.copyWith(color: KWhite),),
+                  //             Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 5),),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       PopupMenuItem(
+                  //         padding:const EdgeInsets.symmetric(vertical: 0,horizontal: 8),
+                  //         height:20,
+                  //         child: Column(
+                  //           children: [
+                  //             Text('Report', style: proximaBold.copyWith(color: KWhite),),
+                  //             Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 5),),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       PopupMenuItem(
+                  //         onTap: () => blockUser(),
+                  //         padding:const EdgeInsets.symmetric(vertical: 0,horizontal: 8),
+                  //         height:20,
+                  //         child: Column(
+                  //           children: [
+                  //             Text('Block', style: proximaBold.copyWith(color: KWhite),),
+                  //             Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 5),),
+                  //           ],
+                  //         ),
+                  //
+                  //
+                  //       ),
+                  //     ]
+                  // ),
+
+                ],
+              ),
+            ),
+          ),
+          Container(height:1,color: KDullBlack,),
           Expanded(
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () => Get.back(),
-                            child: Row(
-                              children: [
-                                Icon(Icons.arrow_back_ios_rounded,color: KDullBlack,size: 20,),
-                                Text("Back",style: proximaBold.copyWith(color: KdullWhite)),
-                              ],
-                            ),
-                          ),
-                          Text(widget.name,style: proximaBold.copyWith(color: KWhite)),
-                          InkWell(
-                            onTap: () => Get.dialog(
-                              Dialog(
-                                backgroundColor: Colors.transparent,
-                                insetPadding: EdgeInsets.only(top: 90,left: MediaQuery.of(context).size.width*0.52,right: 10),
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  height: 120,
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  decoration: BoxDecoration(
-                                      color: KDullBlack,
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(color: KDullBlack,width: 1),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-
-                                      InkWell(
-                                          onTap: (){
-                                            Get.back();
-                                            Get.to(PicturesPage(id: widget.id,));
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 5),
-                                            child: Text('Pictures', style: proximaBold.copyWith(color: KWhite),),
-                                          )
-                                      ),
-                                      Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 10),),
-                                      InkWell(
-                                          onTap: (){
-                                            Get.back();
-                                            Get.dialog(ReportDialog(onReport: (val){reportUser(val);},));
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 5),                                            child: Text('Report', style: proximaBold.copyWith(color: KWhite),),
-                                          )
-                                      ),
-                                      Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 10),),
-                                      InkWell(
-                                          onTap: (){
-                                            Get.back();
-                                            blockUser();
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 5),
-                                            child: Text('Block', style: proximaBold.copyWith(color: KWhite),),
-                                          )
-                                      ),
-
-
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ),
-                            child: Center(
-                                child:  Icon(Icons.more_vert,size:20,color: Colors.grey.withOpacity(0.5),)
-                            ),
-                          )
-                          // PopupMenuButton(
-                          //   shape: Border.all(width: 1,color: KdullWhite,),
-                          //   padding: EdgeInsets.all(10),
-                          //   color: KDullBlack,
-                          //     child: Center(
-                          //         child:  Icon(Icons.more_vert,size:20,color: Colors.grey.withOpacity(0.5),)
-                          //     ),
-                          //     itemBuilder: (context) => [
-                          //       PopupMenuItem(
-                          //         onTap: () => Get.to(PicturesPage()),
-                          //         padding:const EdgeInsets.symmetric(vertical: 0,horizontal: 8),
-                          //         height:20,
-                          //         child: Column(
-                          //           children: [
-                          //             Text('Pictures', style: proximaBold.copyWith(color: KWhite),),
-                          //             Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 5),),
-                          //           ],
-                          //         ),
-                          //       ),
-                          //       PopupMenuItem(
-                          //         padding:const EdgeInsets.symmetric(vertical: 0,horizontal: 8),
-                          //         height:20,
-                          //         child: Column(
-                          //           children: [
-                          //             Text('Report', style: proximaBold.copyWith(color: KWhite),),
-                          //             Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 5),),
-                          //           ],
-                          //         ),
-                          //       ),
-                          //       PopupMenuItem(
-                          //         onTap: () => blockUser(),
-                          //         padding:const EdgeInsets.symmetric(vertical: 0,horizontal: 8),
-                          //         height:20,
-                          //         child: Column(
-                          //           children: [
-                          //             Text('Block', style: proximaBold.copyWith(color: KWhite),),
-                          //             Container(height:1,color: KdullWhite,margin: EdgeInsets.symmetric(vertical: 5),),
-                          //           ],
-                          //         ),
-                          //
-                          //
-                          //       ),
-                          //     ]
-                          // ),
-
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height:1,color: KDullBlack,),
                   ListView.builder(
                     controller: scrollController,
                     padding: EdgeInsets.zero,

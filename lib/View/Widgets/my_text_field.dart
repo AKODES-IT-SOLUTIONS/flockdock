@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class MyTextField extends StatelessWidget {
   bool isObSecure;
 
-  var hintText,bgColor,width,hight,radius,minLines,maxLines,verticalPadding,clr;
+  var hintText,bgColor,width,hight,radius,minLines,maxLines,verticalPadding;
 
   void Function(String value)? onChanged;
   TextEditingController controller;
@@ -25,7 +25,6 @@ class MyTextField extends StatelessWidget {
     this.minLines=1,
     this.maxLines=1,
     this.verticalPadding=6.0,
-    this.clr,
    });
 
   @override
@@ -48,7 +47,7 @@ class MyTextField extends StatelessWidget {
           cursorColor: KWhite,
           autofocus: false,
           style: TextStyle(
-            color: clr,
+            color: KWhite,
             fontFamily: "Proxima"
           ),
           decoration: InputDecoration(

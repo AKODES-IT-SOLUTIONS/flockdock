@@ -39,15 +39,20 @@ Widget BottomNavigator({
                 )
             ],
           ),
-          MyButton(
-            text: trailing,
-            textColor: KWhite,
-            buttonColor: KBlue,
-            buttonHight: 30.0,
-            buttonWidth: 80.0,
-            onPressed: onTapTrailing,
-          )
+          Container(
+            height: 30,
+            width: 80,
+            child: MyButton(
+              onPressed: onTapTrailing,
+              buttonColor: KMediumBlue,
+              text: "Next",
+              textColor: KWhite,
+              textWeight: FontWeight.w700,
+              fontFamily: "Proxima",
+              size: 16,
+            ),
 
+          ),
         ],
       ),
     ),

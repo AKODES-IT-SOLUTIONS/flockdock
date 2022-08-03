@@ -377,14 +377,19 @@ class _GroupViewState extends State<GroupView> {
                           )
                       ),
                     ),
-                    MyButton(
-                      text: "Send",
-                      size: Dimensions.fontSizeLarge,
-                      textColor: KWhite,
-                      buttonColor: KBlue,
-                      buttonHight: 35.0,
-                      buttonWidth: 75.0,
-                      onPressed: sendMessage,
+                    Container(
+                      height: 35,
+                      width: 70,
+                      child: MyButton(
+                        onPressed: sendMessage,
+                        buttonColor: KMediumBlue,
+                        text: "Send",
+                        textColor: KWhite,
+                        textWeight: FontWeight.w700,
+                        fontFamily: "Proxima",
+                        size: 16,
+                      ),
+
                     ),
                   ],
                 ),

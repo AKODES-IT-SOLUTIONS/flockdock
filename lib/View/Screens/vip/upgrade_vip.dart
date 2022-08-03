@@ -75,7 +75,7 @@ class _VIPUpgradeState extends State<VIPUpgrade> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 30),
                     child: MyButton(
-                      buttonColor: KBlue,
+                      buttonColor: KMediumBlue,
                       textColor: KWhite,
                       text: "Upgrade",
                       size: Dimensions.fontSizeLarge,
@@ -129,7 +129,7 @@ class _VIPUpgradeState extends State<VIPUpgrade> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 30),
                     child: MyButton(
-                      buttonColor: KBlue,
+                      buttonColor: KMediumBlue,
                       textColor: KWhite,
                       text: "Upgrade",
                       size: Dimensions.fontSizeLarge,

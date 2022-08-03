@@ -54,17 +54,19 @@ class PrivatPicturePermission extends StatelessWidget {
                       onPressed: () => Get.back(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  Container(
+                    height: 35,
+                    width: MediaQuery.of(context).size.width/3.5,
                     child: MyButton(
-                      text: "Request",
-                      size: Dimensions.fontSizeLarge,
+                      onPressed:onTapRequestPermission,
+                      buttonColor: KMediumBlue,
+                      text: "Apply",
                       textColor: KWhite,
-                      buttonColor: KBlue,
-                      buttonHight: 35.0,
-                      buttonWidth: 100.0,
-                      onPressed: onTapRequestPermission,
+                      textWeight: FontWeight.w700,
+                      fontFamily: "Proxima",
+                      size: 16,
                     ),
+
                   ),
                 ],
               )

@@ -1,5 +1,6 @@
 import 'package:flocdock/View/Screens/create_event/widget/cover.dart';
 import 'package:flocdock/View/Screens/create_event/widget/value_container.dart';
+import 'package:flocdock/View/Widgets/my_button.dart';
 import 'package:flocdock/View/Widgets/my_spacing.dart';
 import 'package:flocdock/View/Widgets/my_text.dart';
 import 'package:flocdock/View/base/custom_snackbar.dart';
@@ -431,18 +432,18 @@ class _FilterDialogState extends State<FilterDialog> {
                           Container(
                             height: 35,
                             width: MediaQuery.of(context).size.width/3.5,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(KBlue),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),)),
-                              onPressed: () => widget.applyFilter!(widget.filterDetail),
-                              child:  Text("Apply",style: proximaExtraBold.copyWith(color: KWhite,),),
+                            child: MyButton(
+                               onPressed: () => widget.applyFilter!(widget.filterDetail),
+                              buttonColor: KMediumBlue,
+                              text: "Apply",
+                              textColor: KWhite,
+                              textWeight: FontWeight.w700,
+                              fontFamily: "Proxima",
+                              size: 16,
+                                    ),
 
                             ),
-                          )
+
                         ],
                       )
                     ])),

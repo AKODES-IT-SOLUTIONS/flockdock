@@ -83,13 +83,22 @@ class _EditProfileState extends State<EditProfile> {
                 children: [
                   Stack(
                     children: [
-                      ClipOval(
-                          child: Image.network(
-                            AppData().userdetail!.profilePicture??AppConstants.placeholder,
-                            height: 90,
-                            width: 90,
-                            fit: BoxFit.cover,
-                          )
+                      Container(
+                        padding: EdgeInsets.all(1),
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            color: KBlue,
+                            shape: BoxShape.circle
+                        ),
+                        child: ClipOval(
+                            child: Image.network(
+                              AppData().userdetail!.profilePicture??AppConstants.placeholder,
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.cover,
+                            )
+                        ),
                       ),
                       Positioned(
                         bottom: 2,right: 2,
