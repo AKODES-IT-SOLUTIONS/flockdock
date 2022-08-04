@@ -56,137 +56,136 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       body: SlidingUpPanel(
-         color: Colors.white.withOpacity(0.5),
+         color: KPureBlack,
         borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25)),
         isDraggable: true,
         backdropEnabled: true,
         backdropTapClosesPanel: true,
         minHeight: 135,
-        maxHeight: MediaQuery.of(context).size.height*0.88,
-        body: SafeArea(
-          child: Stack(
-            children: [
-              Image.network(
-                url.isNotEmpty?url:"https://th.bing.com/th/id/R.3e77a1db6bb25f0feb27c95e05a7bc57?rik=DswMYVRRQEHbjQ&riu=http%3a%2f%2fwww.coalitionrc.com%2fwp-content%2fuploads%2f2017%2f01%2fplaceholder.jpg&ehk=AbGRPPcgHhziWn1sygs8UIL6XIb1HLfHjgPyljdQrDY%3d&risl=&pid=ImgRaw&r=0",
-                height: MediaQuery.of(context).size.height,
-                fit: BoxFit.cover,
-              ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  width: MediaQuery.of(context).size.width*0.95,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: (){
-                                url=userDetail.profilePicture??AppConstants.placeholder;
-                                setState(() {});
-                              },
-                              child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: 2,vertical: 5),
-                                height: 10,
-                                decoration: BoxDecoration(
-                                    color: url==userDetail.profilePicture?KBlue:KDullBlack,
-                                    borderRadius: BorderRadius.circular(5)
-                                ),
+        maxHeight: userDetail.attendedGroups!.length == 0?MediaQuery.of(context).size.height*0.7:MediaQuery.of(context).size.height*0.89,
+        body: Stack(
+          children: [
+            Image.network(
+              url.isNotEmpty?url:"https://th.bing.com/th/id/R.3e77a1db6bb25f0feb27c95e05a7bc57?rik=DswMYVRRQEHbjQ&riu=http%3a%2f%2fwww.coalitionrc.com%2fwp-content%2fuploads%2f2017%2f01%2fplaceholder.jpg&ehk=AbGRPPcgHhziWn1sygs8UIL6XIb1HLfHjgPyljdQrDY%3d&risl=&pid=ImgRaw&r=0",
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: MediaQuery.of(context).size.width*0.95,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 30,),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: (){
+                              url=userDetail.profilePicture??AppConstants.placeholder;
+                              setState(() {});
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 2,vertical: 5),
+                              height: 10,
+                              decoration: BoxDecoration(
+                                  color: url==userDetail.profilePicture?KBlue:KDullBlack,
+                                  borderRadius: BorderRadius.circular(5)
                               ),
                             ),
                           ),
-                          for(int i=0;i<userDetail.otherUserStories!.length;i++)
-                            if(userDetail.otherUserStories![i].pictureType=="Visible")
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: (){
-                                    url=userDetail.otherUserStories![i].picture??'';
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 2,vertical: 5),
-                                    height: 10,
-                                    decoration: BoxDecoration(
-                                        color: userDetail.otherUserStories![i].picture==url?KBlue:KDullBlack,
-                                        borderRadius: BorderRadius.circular(5)
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          for(int i=0;i<userDetail.otherUserStories!.length;i++)
-                            if(userDetail.otherUserStories![i].pictureType=="Private")
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: (){
-                                    if(userDetail.otherUserStories![i].pictureType=="Private") {
-                                      if(userDetail.otherPrivateGalleryAccess=="Allowed")
-                                        url=userDetail.otherUserStories![i].picture??'';
-                                      else
-                                        Get.dialog(PrivatPicturePermission(onTapRequestPermission: requestPrivateGallery,));
-                                    }
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 2,vertical: 5),
-                                    height: 10,
-                                    decoration: BoxDecoration(
-                                        color: userDetail.otherUserStories![i].picture==url?KBlue:Colors.red,
-                                        borderRadius: BorderRadius.circular(5)
-                                    ),
-                                  ),
-                                ),
-                              ),
-                        ],
-                      ),
-                      SizedBox(height: 10,),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(onTap: () => Get.back(),child: Icon(Icons.arrow_back_ios_sharp,color: KWhite,)),
-                          Expanded(child: Container()),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: favouriteUser,
+                        ),
+                        for(int i=0;i<userDetail.otherUserStories!.length;i++)
+                          if(userDetail.otherUserStories![i].pictureType=="Visible")
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: (){
+                                  url=userDetail.otherUserStories![i].picture??'';
+                                  setState(() {});
+                                },
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 15,vertical: 7),
-                                  child: SvgPicture.asset(Images.star,color: userDetail.isFavourite?KBlue:KWhite,width: 18,height: 18,),
+                                  margin: EdgeInsets.symmetric(horizontal: 2,vertical: 5),
+                                  height: 10,
                                   decoration: BoxDecoration(
-                                      color: KDullBlack,
-                                      borderRadius: BorderRadius.circular(20)
+                                      color: userDetail.otherUserStories![i].picture==url?KBlue:KDullBlack,
+                                      borderRadius: BorderRadius.circular(5)
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10,),
-                              GestureDetector(
-                                onTap: () => Get.dialog(ReportBlockDialog(onBlock: blockUser,onReport: () {Get.back();Get.dialog(ReportDialog(onReport: (val){reportUser(val);},));},)),
+                            ),
+                        for(int i=0;i<userDetail.otherUserStories!.length;i++)
+                          if(userDetail.otherUserStories![i].pictureType=="Private")
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: (){
+                                  if(userDetail.otherUserStories![i].pictureType=="Private") {
+                                    if(userDetail.otherPrivateGalleryAccess=="Allowed")
+                                      url=userDetail.otherUserStories![i].picture??'';
+                                    else
+                                      Get.dialog(PrivatPicturePermission(onTapRequestPermission: requestPrivateGallery,));
+                                  }
+                                  setState(() {});
+                                },
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 15,vertical: 7),
-                                  child: SvgPicture.asset(Images.report,color: KWhite,width: 18,height: 18,),
+                                  margin: EdgeInsets.symmetric(horizontal: 2,vertical: 5),
+                                  height: 10,
                                   decoration: BoxDecoration(
-                                      color: KDullBlack,
-                                      borderRadius: BorderRadius.circular(20)
+                                      color: userDetail.otherUserStories![i].picture==url?KBlue:Colors.red,
+                                      borderRadius: BorderRadius.circular(5)
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                      ],
+                    ),
+                    SizedBox(height: 10,),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(onTap: () => Get.back(),child: Icon(Icons.arrow_back_ios_sharp,color: KWhite,)),
+                        Expanded(child: Container()),
+                        Column(
+                          children: [
+                            GestureDetector(
+                              onTap: favouriteUser,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 15,vertical: 7),
+                                child: SvgPicture.asset(Images.star,color: userDetail.isFavourite?KBlue:KWhite,width: 18,height: 18,),
+                                decoration: BoxDecoration(
+                                    color: KDullBlack,
+                                    borderRadius: BorderRadius.circular(20)
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            GestureDetector(
+                              onTap: () => Get.dialog(ReportBlockDialog(onBlock: blockUser,onReport: () {Get.back();Get.dialog(ReportDialog(onReport: (val){reportUser(val);},));},)),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 15,vertical: 7),
+                                child: SvgPicture.asset(Images.report,color: KWhite,width: 18,height: 18,),
+                                decoration: BoxDecoration(
+                                    color: KDullBlack,
+                                    borderRadius: BorderRadius.circular(20)
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
 
-                        ],
-                      ),
+                      ],
+                    ),
 
-                    ],
-                  ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         collapsed: Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-              color: Colors.transparent,
+              color: KPureBlack,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
           ),
           child: PreviewCard(userDetail: userDetail,onTapUser: tapUser,),
@@ -202,9 +201,9 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
             child: Column(
               children: [
                 PreviewCard(userDetail: userDetail,onTapUser: tapUser,),
-                SizedBox(height: 10,),
+                SizedBox(height: 30,),
                 Align(alignment:Alignment.topLeft,child: Text(userDetail.description??'',style: proximaSemiBold.copyWith(color: KWhite,))),
-                SizedBox(height: 10,),
+                SizedBox(height: 15,),
                 ProfileItem(title: "HEIGHT",value: userDetail.height??'',),
                 ProfileItem(title: "WEIGHT:",value: "${userDetail.weight??''} KG",),
                 ProfileItem(title: "ETHNICITY:",value: userDetail.ethnicity??'',),
@@ -250,7 +249,7 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                     ),
                   ],
                 ),
-                Container(
+                userDetail.attendedGroups!.length == 0? SizedBox():  Container(
                   width: MediaQuery.of(context).size.width,
                   color: KDullBlack,
                   child: TabBar(
@@ -266,7 +265,7 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                   ),
                 ),
                 SizedBox(height: 10,),
-                Container(
+                userDetail.attendedGroups!.length == 0? SizedBox(): Container(
                   height: 110,
                   width: MediaQuery.of(context).size.width*0.9,
                   child: TabBarView(
@@ -320,14 +319,15 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                 SizedBox(height: 10,),
 
                 Container(
-                  height: 100,
+                  height: 80,
                   width: MediaQuery.of(context).size.width*0.9,
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
                       color: KDullBlack,
-                      borderRadius: BorderRadius.circular(10)
+                      borderRadius: BorderRadius.circular(5)
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -336,18 +336,23 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                           Text("${userDetail.reliability}%",style: proximaSemiBold.copyWith(color: KBlue,)),
                         ],
                       ),
-                      SliderTheme(
-                        data: SliderThemeData(
-                          activeTrackColor: KBlue,
-                          inactiveTrackColor: KdullWhite,
-                          thumbShape: SliderComponentShape.noThumb,
-                          showValueIndicator: ShowValueIndicator.never,
+                      Container(
+                        height: 20,
+                        child: SliderTheme(
+                          data: SliderThemeData(
+                            activeTrackColor: KBlue,
+                            inactiveTrackColor: KdullWhite,
+                            thumbShape: SliderComponentShape.noThumb,
+                            showValueIndicator: ShowValueIndicator.never,
+                          ),
+                          child: Slider(value: double.tryParse(userDetail.reliability.toString())??0.0, onChanged: (val) {}, min: 0, max:  100),
                         ),
-                        child: Slider(value: double.tryParse(userDetail.reliability.toString())??0.0, onChanged: (val) {}, min: 0, max:  100),
                       ),
+
                     ],
                   ),
                 ),
+                SizedBox(height: 25,),
               ],
             ),
           ),

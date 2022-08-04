@@ -394,7 +394,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 width: 100,
                 child: Column(
                   children: [
-                    SizedBox(height: 15,),
+                    SizedBox(height: 18,),
                     Container(
                       width: 60,
                       padding: EdgeInsets.all(4),

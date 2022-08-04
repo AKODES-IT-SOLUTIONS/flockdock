@@ -51,9 +51,10 @@ class PreviewCard extends StatelessWidget {
 
           ],
         ),
+        SizedBox(height: 6,),
         Row(
           children: [
-            Text("${userDetail!.age??""} Years old,",style: proximaSemiBold.copyWith(color: KWhite,)),
+            Text("${userDetail!.age??""} Years old,",style: proximaSemiBold.copyWith(color: KWhite,fontWeight: FontWeight.normal)),
             SizedBox(width: 10,),
             Text(userDetail!.relationshipStatus??'',style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
           ],
@@ -63,7 +64,7 @@ class PreviewCard extends StatelessWidget {
           children: [
             SvgPicture.asset(Images.address,width: 15,height: 15,),
             SizedBox(width: 5,),
-            Text("${userDetail!.distanceAway.toPrecision(2).toString()} km",style: proximaSemiBold.copyWith(color: KWhite,)),
+            Text("${userDetail!.distanceAway.toPrecision(2).toString()} km",style: proximaSemiBold.copyWith(fontWeight:FontWeight.normal,color: KWhite,)),
             Expanded(child: Container()),
             Row(
               children: [

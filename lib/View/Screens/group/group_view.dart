@@ -74,7 +74,7 @@ class _GroupViewState extends State<GroupView> {
                   Image.network(
                       groupData?.coverPhoto??'',
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height*0.23,
                     fit: BoxFit.cover,
                   ),
                   Padding(
