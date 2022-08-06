@@ -32,7 +32,7 @@ class InboxList extends StatelessWidget {
                         child: Image.network(
                           inboxDetail!.profilePicture==null||inboxDetail!.profilePicture!.isEmpty?AppConstants.placeholder:inboxDetail!.profilePicture!,
                           height: 75,
-                          width: 70,
+                          width: 80,
                           fit: BoxFit.cover,
                         )
                     ),
@@ -104,7 +104,7 @@ class InboxList extends StatelessWidget {
                         child: Image.network(
                           inboxDetail!.profilePicture??AppConstants.placeholder,
                           height: 75,
-                          width: 70,
+                          width: 80,
                           fit: BoxFit.cover,
                         )
                     ),

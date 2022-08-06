@@ -170,7 +170,7 @@ class _FilterDialogState extends State<FilterDialog> {
                           // }
                         },
                         child: Container(
-                          height: 58,
+                          height: 55,
                           padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                           //margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                           decoration: BoxDecoration(
@@ -183,8 +183,8 @@ class _FilterDialogState extends State<FilterDialog> {
                               cursorColor: KWhite,
                               autofocus: false,
                               enabled: false,
-                              style: const TextStyle(
-                                  color: KWhite,
+                              style:  TextStyle(
+                                  color: KWhite.withOpacity(0.5),
                                   fontFamily: "Proxima"
                               ),
                               decoration: const InputDecoration(
@@ -198,7 +198,7 @@ class _FilterDialogState extends State<FilterDialog> {
                       Text("Location",style: proximaExtraBold.copyWith(color: KWhite,),),
                       spaceVertical(3),
                       Container(
-                        height: 58,
+                        height: 55,
                         padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                         //margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                         decoration: BoxDecoration(
@@ -226,8 +226,8 @@ class _FilterDialogState extends State<FilterDialog> {
                             cursorColor: KWhite,
                             autofocus: false,
                             enabled: true,
-                            style: const TextStyle(
-                                color: KWhite,
+                            style:  TextStyle(
+                                color: KWhite.withOpacity(0.5),
                                 fontFamily: "Proxima"
                             ),
                             decoration:  InputDecoration(
@@ -266,9 +266,9 @@ class _FilterDialogState extends State<FilterDialog> {
                             ),
                           ),
                         ),
-                      spaceVertical(10),
+                      spaceVertical(15),
                       GestureDetector(onTap: () => setState(() {show=1;}),child: Text("Type of Group",style: proximaExtraBold.copyWith(color: KWhite,),)),
-                      spaceVertical(3),
+                      spaceVertical(8),
                       if(show==1)Wrap(
                         spacing: 5,
                         runSpacing: 8,
@@ -287,9 +287,9 @@ class _FilterDialogState extends State<FilterDialog> {
                             ),
                         ],
                       ),
-                      spaceVertical(10),
+                      spaceVertical(15),
                       GestureDetector(onTap: () => setState(() {show=2;}),child: Text("Tribe",style: proximaExtraBold.copyWith(color: KWhite,),)),
-                      spaceVertical(3),
+                      spaceVertical(8),
                       if(show==2)Wrap(
                         spacing: 5,
                         runSpacing: 8,
@@ -308,9 +308,9 @@ class _FilterDialogState extends State<FilterDialog> {
                             ),
                         ],
                       ),
-                      spaceVertical(10),
+                      spaceVertical(15),
                       GestureDetector(onTap: () => setState(() {show=3;}),child: Text("Important Rules",style: proximaExtraBold.copyWith(color: KWhite,),)),
-                      spaceVertical(3),
+                      spaceVertical(8),
                       if(show==3)Wrap(
                         spacing: 5,
                         runSpacing: 8,
@@ -329,9 +329,9 @@ class _FilterDialogState extends State<FilterDialog> {
                             ),
                         ],
                       ),
-                      spaceVertical(10),
+                      spaceVertical(15),
                       GestureDetector(onTap: () => setState(() {show=4;}),child: Text("Features",style: proximaExtraBold.copyWith(color: KWhite,),)),
-                      spaceVertical(3),
+                      spaceVertical(8),
                       if(show==4)Wrap(
                         spacing: 5,
                         runSpacing: 8,
@@ -350,7 +350,7 @@ class _FilterDialogState extends State<FilterDialog> {
                             ),
                         ],
                       ),
-                      spaceVertical(10),
+                      spaceVertical(15),
                       // MyText(
                       //   text: "Top-to-Bottom Ratio",
                       //   color: KWhite,
@@ -402,6 +402,7 @@ class _FilterDialogState extends State<FilterDialog> {
                       // ),
                       // spaceVertical(20),
                       Text("Cover",style: proximaExtraBold.copyWith(color: KWhite,),),
+                      spaceVertical(15),
                       Cover(isSelected:selected==1,selected: (select,val){
                         selected=select;
                         cost=val;

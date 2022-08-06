@@ -42,7 +42,7 @@ class _UnitSystemState extends State<UnitSystem> {
                   child: Row(
                     children: [
                       Icon(Icons.arrow_back_ios_rounded,color: KDullBlack,size: 20,),
-                      Text("Back",style: proximaBold.copyWith(color: KdullWhite)),
+                      Text("BACK",style: proximaBold.copyWith(fontSize:16,color: KdullWhite)),
                     ],
                   ),
                 ),

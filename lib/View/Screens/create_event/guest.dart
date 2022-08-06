@@ -56,7 +56,7 @@ class _GuestState extends State<Guest> {
                 children: [
                   Text("CHILL OUT GROUP",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge),),
                   const SizedBox(height: 5,),
-                  Text("Guest",style: proximaBold.copyWith(color: KdullWhite),),
+                  Text("GUEST",style: proximaBold.copyWith(color: KdullWhite),),
                   SizedBox(height: 20,),
                   eventDetail.userGuests!.isNotEmpty?Container(
                     height: 70,
@@ -139,7 +139,7 @@ class _GuestState extends State<Guest> {
                           ClipOval(
                               child: Image.network(
                             AppData().userdetail!.profilePicture??AppConstants.placeholder,
-                            height: 50,width: 50,fit: BoxFit.cover,
+                            height: 70,width: 70,fit: BoxFit.cover,
                               )
                           ),
                           SizedBox(height: 5,),
@@ -154,8 +154,8 @@ class _GuestState extends State<Guest> {
                         child: Column(
                           children: [
                             Container(
-                              height: 50,
-                              width: 50,
+                              height: 70,
+                              width: 70,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: KBlue

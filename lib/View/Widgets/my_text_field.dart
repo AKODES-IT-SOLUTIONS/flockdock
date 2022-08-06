@@ -24,7 +24,7 @@ class MyTextField extends StatelessWidget {
     this.radius=30.0,
     this.minLines=1,
     this.maxLines=1,
-    this.verticalPadding=6.0,
+    this.verticalPadding=0.0,
    });
 
   @override
@@ -38,6 +38,7 @@ class MyTextField extends StatelessWidget {
           color: bgColor
       ),
       child: TextField(
+
         onChanged: onChanged,
           controller: controller,
           minLines: minLines,

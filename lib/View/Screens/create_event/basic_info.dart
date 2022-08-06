@@ -125,7 +125,7 @@ class _BasicInfoState extends State<BasicInfo> {
             SizedBox(height: 5,),
             Text("BASIC INFO",style: proximaBold.copyWith(color: KdullWhite),),
             SizedBox(height: 20,),
-            Text("Upload a cover photo",style: proximaBold.copyWith(color: KdullWhite),),
+            Text("Upload a cover photo",style: proximaBold.copyWith(color: KWhite),),
             SizedBox(height: 3,),
             GestureDetector(
               onTap: () async {
@@ -172,7 +172,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Starting Date",style: proximaBold.copyWith(color: KdullWhite),),
+                    Text("Starting Date",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
                     SizedBox(height: 5,),
                     GestureDetector(
                       onTap: () async {
@@ -222,8 +222,8 @@ class _BasicInfoState extends State<BasicInfo> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(eventDetail.startingDate??'',style: proximaBold.copyWith(color: KdullWhite),),
-                              SvgPicture.asset(Images.date,color: KdullWhite,),
+                              Text(eventDetail.startingDate??'',style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
+                              SvgPicture.asset(Images.date,color: KWhite.withOpacity(0.7),),
                             ],
                           ),
                         ),
@@ -235,7 +235,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Ending Date",style: proximaBold.copyWith(color: KdullWhite),),
+                    Text("Ending Date",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
                     SizedBox(height: 5,),
                     GestureDetector(
                       onTap: () async {
@@ -290,8 +290,8 @@ class _BasicInfoState extends State<BasicInfo> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(eventDetail.endingDate??'',style: proximaBold.copyWith(color: KdullWhite),),
-                              SvgPicture.asset(Images.date,color: KdullWhite,),
+                              Text(eventDetail.endingDate??'',style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
+                              SvgPicture.asset(Images.date,color: KWhite.withOpacity(0.7),),
                             ],
                           ),
                         ),
@@ -302,7 +302,7 @@ class _BasicInfoState extends State<BasicInfo> {
               ],
             ),
             SizedBox(height: 20,),
-            Text("Address",style: proximaBold.copyWith(color: KdullWhite),),
+            Text("Address",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
             SizedBox(height: 5,),
             MyTextField(
               verticalPadding: 0.0,
@@ -365,7 +365,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 ),
               ),
             SizedBox(height: 20,),
-            Text("Map view",style: proximaBold.copyWith(color: KdullWhite),),
+            Text("Map view",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
             SizedBox(height: 5,),
             Stack(
               children: [
@@ -409,7 +409,7 @@ class _BasicInfoState extends State<BasicInfo> {
               ],
             ),
             SizedBox(height: 20,),
-            Text("Additional Instructions",style: proximaBold.copyWith(color: KdullWhite),),
+            Text("Additional Instructions",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
             SizedBox(height: 5,),
             MyTextField(
               radius: 5.0,

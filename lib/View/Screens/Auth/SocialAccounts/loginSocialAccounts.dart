@@ -69,7 +69,7 @@ class _LoginWithSocialState extends State<LoginWithSocial> {
                 buttonColor: KDullBlack,
                 textColor: KWhite,
                 textWeight: FontWeight.w700,
-                text: "Create Account with Email",
+                text: "Create Account with e-mail",
                 fontFamily: "Proxima",
                 size: 18,
               )

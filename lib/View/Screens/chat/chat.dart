@@ -280,7 +280,7 @@ class _ChatState extends State<Chat> {
                               children: [
                                 messages[index].msgType=="attachment"?Container(
                                   width: MediaQuery.of(context).size.width*0.8,
-                                  height: MediaQuery.of(context).size.width*0.5,
+                                  height: MediaQuery.of(context).size.height*0.7,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: NetworkImage(messages[index].message??'',),
@@ -588,7 +588,8 @@ class _ChatState extends State<Chat> {
     }
   }
   void sendLocation() async {
-    String url="https://www.google.com/maps/search/?api=1&query=${AppData().userdetail!.latitude!},${AppData().userdetail!.longitude!}";
+    String url="https://www.google.com/maps/search/?api=1&query="
+        "${AppData().userdetail!.latitude!},${AppData().userdetail!.longitude!}";
     print(url);
       openLoadingDialog(context, "Loading");
       var response;

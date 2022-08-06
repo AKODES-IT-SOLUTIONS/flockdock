@@ -224,28 +224,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Row(
                       children: [
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              _value = !_value;
-                            });
-                          },
-                          child: Container(
-                            height: 22,
-                            width: 22,
-                            decoration: BoxDecoration(
-                                color: KDullBlack,
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2),
-                              child: _value
-                                  ? SvgPicture.asset(
-                                      Images.check,
-                                color: KBlue,
-                                    )
-                                  : SizedBox()
+                        Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _value = !_value;
+                                });
+                              },
+                              child: Container(
+                                height: 22,
+                                width: 22,
+                                decoration: BoxDecoration(
+                                    color: KDullBlack,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2),
+                                  child: _value
+                                      ? SvgPicture.asset(
+                                          Images.check,
+                                    color: KBlue,
+                                        )
+                                      : SizedBox()
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                          ],
                         ),
                         spaceHorizontal(Dimensions.PADDING_SIZE_LARGE),
                         Expanded(

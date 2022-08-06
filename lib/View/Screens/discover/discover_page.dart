@@ -78,7 +78,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 40,
+                        height: 45,
                         width: MediaQuery.of(context).size.width*0.8,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5)
@@ -100,7 +100,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             //print(_autoCompleteResult.first.mainText);
                           },
                           cursorColor: KWhite,
-                          style: proximaBold.copyWith(color: KWhite),
+                          style: proximaBold.copyWith(color: KWhite.withOpacity(0.5)),
                           autofocus: false,
                           decoration: InputDecoration(
                             focusColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
@@ -116,8 +116,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             filled: true,
 
                             prefixIcon: Padding(
-                              padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                              child: SvgPicture.asset(Images.search),
+                              padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL+4),
+                              child: SvgPicture.asset(Images.search,color: KWhite.withOpacity(0.5),),
                             ),
                           ),
                         ),
@@ -394,7 +394,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 width: 100,
                 child: Column(
                   children: [
-                    SizedBox(height: 18,),
+                    // SizedBox(height: 18,),
                     Container(
                       width: 60,
                       padding: EdgeInsets.all(4),
@@ -506,7 +506,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     ));
     setState(() {});
   }
-  Future<Uint8List> convertAssetToUnit8List(String imagePath, {int width = 240}) async {
+  Future<Uint8List> convertAssetToUnit8List(String imagePath, {int width = 330}) async {
     ByteData data = await rootBundle.load(imagePath);
     Codec codec = await instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
     FrameInfo fi = await codec.getNextFrame();

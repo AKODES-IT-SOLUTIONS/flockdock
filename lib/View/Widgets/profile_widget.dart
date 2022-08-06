@@ -28,7 +28,7 @@ Widget ProfileWidget({
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.black.withOpacity(0.7),
+                Colors.black.withOpacity(0.96),
                 Colors.grey.withOpacity(0.0),
               ],
               stops: [
@@ -101,7 +101,7 @@ Widget GroupWidget({double? width, required String img, required String groupNam
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
-                  Colors.black.withOpacity(0.7),
+                  Colors.black.withOpacity(0.96),
                   Colors.grey.withOpacity(0.0),
                 ],
                 stops: [
@@ -109,12 +109,13 @@ Widget GroupWidget({double? width, required String img, required String groupNam
                   1.0
                 ])),
         child: Padding(
-          padding: const EdgeInsets.only(top: 50, right: 5, left: 5, bottom: 5),
+          padding: const EdgeInsets.only(right: 5, left: 5, bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(height: 15,),
               MyText(
                 text: groupName,
                 fontFamily: "Proxima",

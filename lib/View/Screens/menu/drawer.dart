@@ -87,15 +87,15 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
               title: Text(
                 "Settings",
-                style: proximaBold.copyWith(fontSize:Dimensions.fontSizeExtraLarge,color: KWhite.withOpacity(0.7)),
+                style: proximaBold.copyWith(fontSize:Dimensions.fontSizeExtraLarge,color: KWhite.withOpacity(0.5)),
               ),
               onTap: () => Get.to(Setting()),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              height: 1,
-              color: KWhiteBrown,
-            ),
+           Divider(
+             color: KWhite.withOpacity(0.5),
+             indent: 20,
+             endIndent: 20,
+           ),
             ListTile(
               title: InkWell(
                 onTap: () => Get.to(() => VIPUpgrade()),
@@ -103,7 +103,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   padding: const EdgeInsets.only(left: 15.0),
                   child: Text(
                     "Upgrade to VIP plan",
-                    style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),
+                    style: proximaBold.copyWith(color: KWhite.withOpacity(0.5),fontSize: Dimensions.fontSizeOverLarge-3),
                   ),
                 ),
               ),
@@ -121,6 +121,7 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
               onTap: offlineUser,
             ),
+            SizedBox(height: 30,),
 
             
 

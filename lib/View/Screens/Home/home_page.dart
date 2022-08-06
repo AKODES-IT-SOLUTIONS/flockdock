@@ -115,309 +115,315 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: KbgBlack,
-      drawer: MyDrawer(),
-      appBar: CustomAppbar(pageName: 'Docks', description: "Nearby Groups & Profiles",
-        onTap: () => Get.to(() => ChooseCategory()),
-        isFilter: true,
-        onTapFilter: () => Get.dialog(FilterDialog(
-          filterDetail: filterDetail,
-          applyFilter: (val){
-            filterDetail=val;
-            print(filterDetail.toJson());
-            Get.back();
-            getFilteredGroups();
-          },
-          cancelFilter: () => Get.back(),
-        )
+    return WillPopScope(
+      onWillPop: () async{
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: KbgBlack,
+        drawer: MyDrawer(),
+        appBar: CustomAppbar(pageName: 'Docks', description: "Nearby Groups & Profiles",
+          onTap: () => Get.to(() => ChooseCategory()),
+          isFilter: true,
+          onTapFilter: () => Get.dialog(FilterDialog(
+            filterDetail: filterDetail,
+            applyFilter: (val){
+              filterDetail=val;
+              print(filterDetail.toJson());
+              Get.back();
+              getFilteredGroups();
+            },
+            cancelFilter: () => Get.back(),
+          )
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-        child: Column(
-          children: [
-            isSearch?Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 40,
-                  margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_DEFAULT),
-                  width: MediaQuery.of(context).size.width*0.8,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: TextField(
-                    controller: searchController,
-                    keyboardType: TextInputType.text,
-                    onChanged: (value) async {
-                      if(value!=""){
-                        searchUserGroups();
-                      }
-                      //print(_autoCompleteResult.first.mainText);
-                    },
-                    cursorColor: KWhite,
-                    style: proximaBold.copyWith(color: KWhite),
-                    autofocus: false,
-                    decoration: InputDecoration(
-                      focusColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
-                      hoverColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: const BorderSide(style: BorderStyle.none, width: 0),
-                      ),
-                      isDense: true,
-                      hintText: "Search...",
-                      hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.5)),
-                      fillColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
-                      filled: true,
+        bottomNavigationBar: BottomBar(),
+        body: Padding(
+          padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
+          child: Column(
+            children: [
+              isSearch?Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 45,
+                    margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_DEFAULT),
+                    width: MediaQuery.of(context).size.width*0.8,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5)
+                    ),
+                    child: TextField(
+                      controller: searchController,
+                      keyboardType: TextInputType.text,
+                      onChanged: (value) async {
+                        if(value!=""){
+                          searchUserGroups();
+                        }
+                        //print(_autoCompleteResult.first.mainText);
+                      },
+                      cursorColor: KWhite,
+                      style: proximaBold.copyWith(color: KWhite),
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        focusColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
+                        hoverColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: const BorderSide(style: BorderStyle.none, width: 0),
+                        ),
+                        isDense: true,
+                        hintText: "Search...",
+                        hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.5)),
+                        fillColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
+                        filled: true,
 
-                      prefixIcon: Padding(
-                        padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                        child: SvgPicture.asset(Images.search,color: KWhite.withOpacity(0.5)),
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL+2),
+                          child: SvgPicture.asset(Images.search,color: KWhite.withOpacity(0.5)),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: (){
-                    print("AppLifecycleState.paused");
-                    print(AppLifecycleState.paused.index);
-                    print(AppLifecycleState.paused.name);
-                    print("AppLifecycleState.detached");
-                    print(AppLifecycleState.detached.index);
-                    print(AppLifecycleState.detached.name);
-                    print("AppLifecycleState.inactive");
-                    print(AppLifecycleState.inactive.index);
-                    print(AppLifecycleState.inactive.name);
-                    print("AppLifecycleState.resumed");
-                    print(AppLifecycleState.resumed.index);
-                    print(AppLifecycleState.resumed.name);
-
-                    setState(() {
-                      searchController.clear();
-                      isSearch=!isSearch;
-                    });
-                  },
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        padding: EdgeInsets.only(bottom: 15),
-                          child: Icon(Icons.close,color: KWhite,)
-                      )
-                  ),
-                )
-              ],
-            ):SizedBox(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FlutterSwitch(
-                  height: 20.0,
-                  width: 38.0,
-                  padding: 1.0,
-                  inactiveToggleColor: KDullBlack,
-                  activeToggleColor: KBlue,
-                  toggleSize: 20.0,
-                  inactiveColor: KdullWhite,
-                  activeColor: KdullWhite,
-                  value: isProfile,
-                  onToggle: (value) {
-                    isProfile=value;
-                    if(isProfile&&isGroup)
-                      getProfileGroups();
-                    else if(isProfile)
-                      getUsers();
-                    else if(!isGroup) {
-                      isGroup=true;
-                      getGroups();
-                    }
-                    else
-                      setState(() {});
-                  },
-                ),
-                spaceHorizontal(5),
-                MyText(
-                  text: "SHOW PROFILES",
-                  color: KdullWhite,
-                  size: 12,
-                  weight: FontWeight.w700,
-                  fontFamily: "Proxima",
-                ),
-                spaceHorizontal(20),
-                FlutterSwitch(
-                  height: 20.0,
-                  width: 38.0,
-                  padding: 1.0,
-                  inactiveToggleColor: KDullBlack,
-                  activeToggleColor: KBlue,
-                  toggleSize: 20.0,
-                  inactiveColor: KdullWhite,
-                  activeColor: KdullWhite,
-                  value: isGroup,
-                  onToggle: (value) {
-                    isGroup = value;
-                    if(isProfile&&isGroup)
-                      getProfileGroups();
-                    else if(isGroup)
-                      getGroups();
-                    else if(!isProfile) {
-                      isProfile=true;
-                      getUsers();
-                    }
-                    else
-                      setState(() {});
-                  },
-                ),
-                spaceHorizontal(5),
-                MyText(
-                  text: "SHOW GROUPS",
-                  color: KdullWhite,
-                  size: 12,
-                  weight: FontWeight.w700,
-                  fontFamily: "Proxima",
-                ),
-                isSearch?SizedBox():Expanded(
-                  child: InkWell(
+                  InkWell(
                     onTap: (){
+                      print("AppLifecycleState.paused");
+                      print(AppLifecycleState.paused.index);
+                      print(AppLifecycleState.paused.name);
+                      print("AppLifecycleState.detached");
+                      print(AppLifecycleState.detached.index);
+                      print(AppLifecycleState.detached.name);
+                      print("AppLifecycleState.inactive");
+                      print(AppLifecycleState.inactive.index);
+                      print(AppLifecycleState.inactive.name);
+                      print("AppLifecycleState.resumed");
+                      print(AppLifecycleState.resumed.index);
+                      print(AppLifecycleState.resumed.name);
+
                       setState(() {
+                        searchController.clear();
                         isSearch=!isSearch;
                       });
                     },
                     child: Align(
-                        alignment: Alignment.centerRight,
-                        child: SvgPicture.asset(Images.search)
+                        alignment: Alignment.center,
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 15),
+                            child: Icon(Icons.close,color: KWhite,)
+                        )
                     ),
+                  )
+                ],
+              ):SizedBox(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  FlutterSwitch(
+                    height: 20.0,
+                    width: 38.0,
+                    padding: 1.0,
+                    inactiveToggleColor: KDullBlack,
+                    activeToggleColor: KBlue,
+                    toggleSize: 20.0,
+                    inactiveColor: KdullWhite,
+                    activeColor: KdullWhite,
+                    value: isProfile,
+                    onToggle: (value) {
+                      isProfile=value;
+                      if(isProfile&&isGroup)
+                        getProfileGroups();
+                      else if(isProfile)
+                        getUsers();
+                      else if(!isGroup) {
+                        isGroup=true;
+                        getGroups();
+                      }
+                      else
+                        setState(() {});
+                    },
                   ),
-                )
-              ],
-            ),
-            spaceVertical(28),
-            isSearch == true || isGroup == true && isProfile == true
-                ? Expanded(
-                  child: SingleChildScrollView(
-                    child: Wrap(
-                      children: [
-                        StaggeredGrid.count(
-                          mainAxisSpacing: 8,
-                          crossAxisSpacing: 8,
-                          crossAxisCount: 3,
-                          children: [
-                            for(int i=0;i<profileGroup!.length;i++)
-                              profileGroup![i].objectType=="Group"?
-                              StaggeredGridTile.count(
-                                crossAxisCellCount: 2,
-                                mainAxisCellCount: 1,
-                                child: GestureDetector(
-                                  onTap: () => Get.to(GroupView(groupId: profileGroup![i].groupId)),
-                                  child: GroupWidget(
-                                    img: profileGroup![i].picture??'',
-                                    groupName: profileGroup![i].name??'',
-                                    distance: profileGroup![i].distanceAway!.toPrecision(2).toString(),
-                                    groupMembers: profileGroup![i].totalActiveMembers.toString(),
-                                  ),
-                                ),
-                              ):
-                              StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
+                  spaceHorizontal(5),
+                  MyText(
+                    text: "SHOW PROFILES",
+                    color: KdullWhite,
+                    size: 12,
+                    weight: FontWeight.w700,
+                    fontFamily: "Proxima",
+                  ),
+                  spaceHorizontal(20),
+                  FlutterSwitch(
+                    height: 20.0,
+                    width: 38.0,
+                    padding: 1.0,
+                    inactiveToggleColor: KDullBlack,
+                    activeToggleColor: KBlue,
+                    toggleSize: 20.0,
+                    inactiveColor: KdullWhite,
+                    activeColor: KdullWhite,
+                    value: isGroup,
+                    onToggle: (value) {
+                      isGroup = value;
+                      if(isProfile&&isGroup)
+                        getProfileGroups();
+                      else if(isGroup)
+                        getGroups();
+                      else if(!isProfile) {
+                        isProfile=true;
+                        getUsers();
+                      }
+                      else
+                        setState(() {});
+                    },
+                  ),
+                  spaceHorizontal(5),
+                  MyText(
+                    text: "SHOW GROUPS",
+                    color: KdullWhite,
+                    size: 12,
+                    weight: FontWeight.w700,
+                    fontFamily: "Proxima",
+                  ),
+                  isSearch?SizedBox():Expanded(
+                    child: InkWell(
+                      onTap: (){
+                        setState(() {
+                          isSearch=!isSearch;
+                        });
+                      },
+                      child: Align(
+                          alignment: Alignment.centerRight,
+                          child: SvgPicture.asset(Images.search)
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              spaceVertical(28),
+              isSearch == true || isGroup == true && isProfile == true
+                  ? Expanded(
+                    child: SingleChildScrollView(
+                      child: Wrap(
+                        children: [
+                          StaggeredGrid.count(
+                            mainAxisSpacing: 8,
+                            crossAxisSpacing: 8,
+                            crossAxisCount: 3,
+                            children: [
+                              for(int i=0;i<profileGroup!.length;i++)
+                                profileGroup![i].objectType=="Group"?
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 2,
                                   mainAxisCellCount: 1,
                                   child: GestureDetector(
-                                    onTap: () => Get.to(ProfileView(userId: profileGroup![i].usersId)),
-                                    child: ProfileWidget(
-                                        img: profileGroup![i].picture??'',
-                                        profileName: profileGroup![i].name??'',
-                                        distance: profileGroup![i].distanceAway!.toPrecision(2).toString(),
-                                      isOnline: profileGroup![i].isOnline
+                                    onTap: () => Get.to(GroupView(groupId: profileGroup![i].groupId)),
+                                    child: GroupWidget(
+                                      img: profileGroup![i].picture??'',
+                                      groupName: profileGroup![i].name??'',
+                                      distance: profileGroup![i].distanceAway!.toPrecision(2).toString(),
+                                      groupMembers: profileGroup![i].totalActiveMembers.toString(),
                                     ),
-                                  )
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-                : isProfile == true
-                ? Expanded(
-              child: SingleChildScrollView(
-                child: Wrap(
-                  children: [
-                    StaggeredGrid.count(
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
-                      crossAxisCount: 3,
-                      children: [
-                        for(int index=0;index<userData!.length;index++)
-                          StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: GestureDetector(
-                                onTap: () => Get.to(ProfileView(userId: userData![index].usersId)),
-                                child: ProfileWidget(
-                                    img: userData![index].profilePicture??AppConstants.placeholder,
-                                    profileName: userData![index].userName??'',
-                                    distance: userData![index].distanceAway.toPrecision(2).toString(),
-                                    isOnline: userData![index].isOnline
+                                  ),
+                                ):
+                                StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: GestureDetector(
+                                      onTap: () => Get.to(ProfileView(userId: profileGroup![i].usersId)),
+                                      child: ProfileWidget(
+                                          img: profileGroup![i].picture??'',
+                                          profileName: profileGroup![i].name??'',
+                                          distance: profileGroup![i].distanceAway!.toPrecision(2).toString(),
+                                        isOnline: profileGroup![i].isOnline
+                                      ),
+                                    )
                                 ),
-                              )
+                            ],
                           ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            )
-                : isGroup == true?
-                Expanded(
-                  child: GridView.builder(
-                    physics: BouncingScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
-                          childAspectRatio: 4 / 2,
-                          crossAxisSpacing: 13,
-                          mainAxisSpacing: 13,
+                        ],
                       ),
-                      itemCount: groupData!.length,
-                      itemBuilder: (BuildContext ctx, index){
-                        return GestureDetector(
-                          onTap: () => Get.to(GroupView(groupId: groupData![index].groupId,)),
-                          child: GroupWidget(
-                              img: groupData![index].coverPhoto!,
-                              groupName: groupData![index].category!.category!,
-                              distance: groupData![index].distanceAway!.toPrecision(2).toString(),
-                              groupMembers: groupData![index].totalAttendees.toString(),
-                          ),
-                        );
-                      }
+                    ),
+                  )
+                  : isProfile == true
+                  ? Expanded(
+                child: SingleChildScrollView(
+                  child: Wrap(
+                    children: [
+                      StaggeredGrid.count(
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        crossAxisCount: 3,
+                        children: [
+                          for(int index=0;index<userData!.length;index++)
+                            StaggeredGridTile.count(
+                                crossAxisCellCount: 1,
+                                mainAxisCellCount: 1,
+                                child: GestureDetector(
+                                  onTap: () => Get.to(ProfileView(userId: userData![index].usersId)),
+                                  child: ProfileWidget(
+                                      img: userData![index].profilePicture??AppConstants.placeholder,
+                                      profileName: userData![index].userName??'',
+                                      distance: userData![index].distanceAway.toPrecision(2).toString(),
+                                      isOnline: userData![index].isOnline
+                                  ),
+                                )
+                            ),
+                        ],
+                      ),
+                    ],
                   ),
-                ): Expanded(child: Container()),
+                ),
+              )
+                  : isGroup == true?
+                  Expanded(
+                    child: GridView.builder(
+                      physics: BouncingScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 4 / 2,
+                            crossAxisSpacing: 13,
+                            mainAxisSpacing: 13,
+                        ),
+                        itemCount: groupData!.length,
+                        itemBuilder: (BuildContext ctx, index){
+                          return GestureDetector(
+                            onTap: () => Get.to(GroupView(groupId: groupData![index].groupId,)),
+                            child: GroupWidget(
+                                img: groupData![index].coverPhoto!,
+                                groupName: groupData![index].category!.category!,
+                                distance: groupData![index].distanceAway!.toPrecision(2).toString(),
+                                groupMembers: groupData![index].totalAttendees.toString(),
+                            ),
+                          );
+                        }
+                    ),
+                  ): Expanded(child: Container()),
 
-            // Expanded(
-            //   child: GridView.builder(
-            //       gridDelegate:
-            //       const SliverGridDelegateWithMaxCrossAxisExtent(
-            //           maxCrossAxisExtent: 100,
-            //           crossAxisSpacing: 13,
-            //           mainAxisSpacing: 13
-            //       ),
-            //       itemCount: userData!.length,
-            //       itemBuilder: (BuildContext ctx, index) {
-            //         return GestureDetector(
-            //           onTap: () => Get.to(ProfileView(userId: userData![index].usersId)),
-            //           child: ProfileWidget(
-            //               img: userData![index].profilePicture??AppConstants.placeholder,
-            //               profileName: userData![index].userName??'',
-            //               distance: userData![index].distanceAway.toPrecision(2).toString(),
-            //               isOnline: userData![index].isOnline
-            //           ),
-            //         );
-            //       }),
-            // ),
-            
-            AdvertisementContainer(context: context)
+              // Expanded(
+              //   child: GridView.builder(
+              //       gridDelegate:
+              //       const SliverGridDelegateWithMaxCrossAxisExtent(
+              //           maxCrossAxisExtent: 100,
+              //           crossAxisSpacing: 13,
+              //           mainAxisSpacing: 13
+              //       ),
+              //       itemCount: userData!.length,
+              //       itemBuilder: (BuildContext ctx, index) {
+              //         return GestureDetector(
+              //           onTap: () => Get.to(ProfileView(userId: userData![index].usersId)),
+              //           child: ProfileWidget(
+              //               img: userData![index].profilePicture??AppConstants.placeholder,
+              //               profileName: userData![index].userName??'',
+              //               distance: userData![index].distanceAway.toPrecision(2).toString(),
+              //               isOnline: userData![index].isOnline
+              //           ),
+              //         );
+              //       }),
+              // ),
+              AdvertisementContainer(context: context,
+              height: isGroup && !isProfile? 65 : 90
+              )
 
-          ],
+            ],
+          ),
         ),
       ),
     );

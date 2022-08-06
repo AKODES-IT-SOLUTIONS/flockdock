@@ -39,20 +39,20 @@ class EventDetails extends StatelessWidget {
                 children: [
                   Text("CHILL OUT GROUP",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge),),
                   SizedBox(height: 5,),
-                  Text("Details",style: proximaBold.copyWith(color: KdullWhite),),
-                  SizedBox(height: 20,),
+                  Text("DETAILS",style: proximaBold.copyWith(color: KdullWhite,fontSize: 16),),
+                  SizedBox(height: 25,),
                   Text("Tribe",style: proximaExtraBold.copyWith(color: KWhite,),),
-                  SizedBox(height: 8),
+                  SizedBox(height: 12),
                   TribeItems(),
-                  SizedBox(height: 15),
+                  SizedBox(height: 25),
                   Text("Important Rules",style: proximaExtraBold.copyWith(color: KWhite,),),
-                  SizedBox(height: 8),
+                  SizedBox(height: 12),
                   ImportantRule(),
-                  SizedBox(height: 15),
+                  SizedBox(height: 25),
                   Text("Features",style: proximaExtraBold.copyWith(color: KWhite,),),
-                  SizedBox(height: 8),
+                  SizedBox(height: 12),
                   Features(),
-                  SizedBox(height: 15),
+                  SizedBox(height: 25),
                   // MyText(
                   //   text: "Top-to-Bottom Ratio",
                   //   color: KWhite,
@@ -104,7 +104,7 @@ class EventDetails extends StatelessWidget {
                   // ),
                   // spaceVertical(20),
                   Text("Cover",style: proximaExtraBold.copyWith(color: KWhite,),),
-                  SizedBox(height: 8,),
+                  SizedBox(height: 12,),
                   Cover(selected: (select,val){
                     selected=select;
                     cost=val;

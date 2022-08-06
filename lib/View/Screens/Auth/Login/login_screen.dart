@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: TextDecoration.underline,
                         weight: FontWeight.w700,
                         fontFamily: "Proxima",
-                        size: 17,
+                        size: 15,
                       ),
                     )
                   ],
@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     MyText(
                         text: "Don't have an account?",
-                        size: 16,
+                        size: 15,
                         fontFamily: "Proxima",
                         color: KMediumBlue,
                         weight: FontWeight.w700,
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: MyText(
                         text: "Register Now",
                         weight: FontWeight.w700,
-                        size: 16,
+                        size: 15,
                         color: KWhite,
                         fontFamily: "Proxima",
                       ),
@@ -152,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
         AppData().userdetail =userDetail;
         print(AppData().userdetail!.toJson());
         Navigator.pop(context);
-        Get.to(HomePage());
+        Get.offAll(HomePage());
       }
       else{
         Navigator.pop(context);

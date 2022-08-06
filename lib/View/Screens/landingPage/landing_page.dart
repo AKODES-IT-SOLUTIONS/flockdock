@@ -41,7 +41,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
               spaceVertical(180),
               SizedBox(
-                height: 55,
+                height: 49,
                 width: double.infinity,
                 child: MyButton(
                   text: "Log In",
@@ -55,7 +55,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
               spaceVertical(14),
               SizedBox(
-                height: 55,
+                height: 49,
                 width: double.infinity,
                 child: MyButton(
                   textWeight: FontWeight.w700,

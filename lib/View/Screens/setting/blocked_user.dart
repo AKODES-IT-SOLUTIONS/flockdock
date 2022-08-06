@@ -48,7 +48,7 @@ class _BlockedUserState extends State<BlockedUser> {
                   child: Row(
                     children: [
                       Icon(Icons.arrow_back_ios_rounded,color: KDullBlack,size: 20,),
-                      Text("Back",style: proximaBold.copyWith(color: KdullWhite)),
+                      Text("BACK",style: proximaBold.copyWith(color: KdullWhite,fontSize: 16)),
                     ],
                   ),
                 ),

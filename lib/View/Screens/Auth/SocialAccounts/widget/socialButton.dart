@@ -36,7 +36,7 @@ class SocialButton extends StatelessWidget {
         color: buttonColor,
         borderRadius: BorderRadius.circular(30),
       ),
-      height: 55,
+      height: 49,
       width: double.infinity,
       child: TextButton(
         onPressed: onPressed,

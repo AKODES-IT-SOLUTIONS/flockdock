@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 3),
             () => AppData().isAuthenticated?Get.offAll(HomePage()):Get.offAll(LandingPage())
     );
     super.initState();
@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: KMediumBlue,
+        backgroundColor: KBlue,
         body: Center(child: SvgPicture.asset(Images.logo,
           height: 110,
           width: 110,

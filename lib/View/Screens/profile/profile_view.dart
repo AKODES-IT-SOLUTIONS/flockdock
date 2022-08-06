@@ -253,13 +253,14 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                   width: MediaQuery.of(context).size.width,
                   color: KDullBlack,
                   child: TabBar(
+                    labelStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                     controller: _tabController,
                     indicatorColor: KBlue,
                     indicatorWeight: 5,
                     labelColor: KWhite,
                     unselectedLabelColor:KdullWhite,
                     tabs: const [
-                      Tab(text: 'ATTENDING'),
+                      Tab(text: 'ATTENDING',),
                       Tab(text: 'HOSTING'),
                     ],
                   ),
@@ -274,7 +275,7 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                       GridView.builder(
                           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 200,
-                              childAspectRatio: 4 / 2.7,
+                              childAspectRatio: 4 / 2.4,
                               crossAxisSpacing: 13,
                               mainAxisSpacing: 13
                           ),
@@ -295,7 +296,7 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
                       GridView.builder(
                           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 200,
-                              childAspectRatio: 4 / 2.7,
+                              childAspectRatio: 4 / 2.4,
                               crossAxisSpacing: 13,
                               mainAxisSpacing: 13
                           ),

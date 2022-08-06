@@ -60,9 +60,9 @@ class _ChooseCategoryState extends State<ChooseCategory> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text("Category",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge),),
+            Text("CATEGORY",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge),),
             SizedBox(height: 3,),
-            Text("Choose a Group",style: proximaBold.copyWith(color: KdullWhite),),
+            Text("Choose a Category",style: proximaBold.copyWith(color: KdullWhite,fontSize: 16),),
             SizedBox(height: 10,),
 
             Expanded(
@@ -70,9 +70,9 @@ class _ChooseCategoryState extends State<ChooseCategory> {
                 physics: BouncingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
-                      childAspectRatio: 4 / 2.7,
-                      crossAxisSpacing: 13,
-                      mainAxisSpacing: 13
+                      childAspectRatio: 4 / 2.2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8
                   ),
                   itemCount: categories.length,
                   itemBuilder: (BuildContext ctx, index){
