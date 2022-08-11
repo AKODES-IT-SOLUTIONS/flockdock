@@ -117,6 +117,7 @@ class _BasicInfoState extends State<BasicInfo> {
       backgroundColor: KbgBlack,
       appBar: SimpleAppbar(description: "Gather a Group", pageName: 'HOST',pageTrailing: Images.close,isEvent: true,),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         padding:EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,14 +212,14 @@ class _BasicInfoState extends State<BasicInfo> {
                         });
                       },
                       child: Container(
-                        height: 40,
+                        height: 49,
                         width: MediaQuery.of(context).size.width*0.42,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(30),
                             color: KDullBlack
                         ),
                         child:  Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -279,14 +280,14 @@ class _BasicInfoState extends State<BasicInfo> {
                         }
                       },
                       child: Container(
-                        height: 40,
+                        height: 49,
                         width: MediaQuery.of(context).size.width*0.42,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(30),
                             color: KDullBlack
                         ),
                         child:  Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -302,7 +303,7 @@ class _BasicInfoState extends State<BasicInfo> {
               ],
             ),
             SizedBox(height: 20,),
-            Text("Address",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
+            Text("Address",style: proximaBold.copyWith(color: KWhite),),
             SizedBox(height: 5,),
             MyTextField(
               verticalPadding: 0.0,
@@ -365,7 +366,7 @@ class _BasicInfoState extends State<BasicInfo> {
                 ),
               ),
             SizedBox(height: 20,),
-            Text("Map view",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
+            Text("Map view",style: proximaBold.copyWith(color: KWhite),),
             SizedBox(height: 5,),
             Stack(
               children: [
@@ -409,7 +410,7 @@ class _BasicInfoState extends State<BasicInfo> {
               ],
             ),
             SizedBox(height: 20,),
-            Text("Additional Instructions",style: proximaBold.copyWith(color: KWhite.withOpacity(0.7)),),
+            Text("Additional Instructions",style: proximaBold.copyWith(color: KWhite),),
             SizedBox(height: 5,),
             MyTextField(
               radius: 5.0,

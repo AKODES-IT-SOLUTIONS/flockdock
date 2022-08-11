@@ -256,6 +256,9 @@ class _GroupViewState extends State<GroupView> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 12,
+              ),
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
@@ -276,6 +279,9 @@ class _GroupViewState extends State<GroupView> {
                     ],
                   )
                 ),
+              ),
+              SizedBox(
+                height: 12,
               ),
               Align(
                 alignment: Alignment.topLeft,
@@ -313,7 +319,7 @@ class _GroupViewState extends State<GroupView> {
                     )
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 12,),
 
               isJoined?Align(
                 alignment: Alignment.topLeft,

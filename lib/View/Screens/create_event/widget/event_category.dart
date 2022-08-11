@@ -12,25 +12,22 @@ Widget EventCategory({
 }) {
   return Container(
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: isSelected?KBlue:KbgBlack,width: 2),
         image: DecorationImage(image: NetworkImage(img), fit: BoxFit.cover)),
-    child: Padding(
-      padding: const EdgeInsets.only(top: 50, right: 5, left: 5, bottom: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          MyText(
-            text: groupName,
-            fontFamily: "Proxima",
-            color: KWhite,
-            weight: FontWeight.w800,
-            size: 18,
-          ),
-        ],
-      ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        MyText(
+          text: groupName,
+          fontFamily: "Proxima",
+          color: KWhite,
+          weight: FontWeight.w800,
+          size: 18,
+        ),
+      ],
     ),
   );
 }

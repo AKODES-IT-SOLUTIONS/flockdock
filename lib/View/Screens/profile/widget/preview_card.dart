@@ -59,7 +59,7 @@ class PreviewCard extends StatelessWidget {
             Text(userDetail!.relationshipStatus??'',style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge)),
           ],
         ),
-        SizedBox(height: 10,),
+        // SizedBox(height: 6,),
         Row(
           children: [
             SvgPicture.asset(Images.address,width: 15,height: 15,),

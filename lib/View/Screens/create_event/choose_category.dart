@@ -60,9 +60,9 @@ class _ChooseCategoryState extends State<ChooseCategory> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text("CATEGORY",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge),),
+            Text("CATEGORY",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeLarge+1),),
             SizedBox(height: 3,),
-            Text("Choose a Category",style: proximaBold.copyWith(color: KdullWhite,fontSize: 16),),
+            Text("Choose a Category",style: proximaBold.copyWith(color: KdullWhite,fontSize: 15),),
             SizedBox(height: 10,),
 
             Expanded(

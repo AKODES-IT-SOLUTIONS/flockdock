@@ -144,13 +144,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               borderRadius: BorderRadius.circular(30)),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: Dimensions.PADDING_SIZE_SMALL),
+                                horizontal: Dimensions.PADDING_SIZE_SMALL+5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 MyText(
                                   text: birthday,
-                                  color: KWhite.withOpacity(0.5),
+                                  color: KWhite,
                                   size: 16,
                                   fontFamily: "Proxima",
                                 ),
@@ -179,7 +179,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             borderRadius: BorderRadius.circular(30)),
                         child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: Dimensions.PADDING_SIZE_SMALL),
+                                horizontal: Dimensions.PADDING_SIZE_SMALL+10),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
                                   value: value,
@@ -217,7 +217,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputType: TextInputType.visiblePassword,
                     controller: _confirmPasswordController,
                     isObSecure: true,
-                    hintText: "Confirm Password",
+                    hintText: "Confirm password",
                   ),
                   spaceVertical(20),
                   Padding(
@@ -259,7 +259,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: MyText(
                             text:
                                 "I accept the terms, privacy policy, and conditions of cookies policy.",
-                            color: KWhite.withOpacity(0.5),
+                            color: KWhite,
                             weight: FontWeight.w400,
                             fontFamily: "Proxima",
                             size: 16,

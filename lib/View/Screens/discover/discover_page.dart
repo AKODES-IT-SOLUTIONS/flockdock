@@ -115,10 +115,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             fillColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
                             filled: true,
 
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL+4),
-                              child: SvgPicture.asset(Images.search,color: KWhite.withOpacity(0.5),),
-                            ),
+                            prefixIcon: Icon(Icons.search,size: 22,color: KWhite.withOpacity(0.7))
                           ),
                         ),
                       ),
@@ -130,8 +127,9 @@ class _DiscoverPageState extends State<DiscoverPage> {
                         },
                         child: Column(
                           children: [
+                            SizedBox(height: isMap? 7 : 1),
                             SvgPicture.asset(isMap?Images.listview:Images.map),
-                            SizedBox(height: 1,),
+                            SizedBox(height: 5,),
                             Text(isMap?"List":"Map",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeSmall),),
                           ],
                         ),

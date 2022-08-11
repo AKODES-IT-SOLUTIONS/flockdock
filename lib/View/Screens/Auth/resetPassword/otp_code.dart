@@ -88,7 +88,8 @@ class _OTPCodeState extends State<OTPCode> {
                     onPressed: verifyCode,
                     fontFamily: "Proxima",
                     size: 17,
-                    text: "Send",
+                    text: "Submit",
+                    textWeight: FontWeight.w700,
                     textColor: KWhite,
                     buttonColor: KMediumBlue,
                   )

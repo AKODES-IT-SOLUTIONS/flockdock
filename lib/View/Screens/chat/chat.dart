@@ -88,7 +88,7 @@ class _ChatState extends State<Chat> {
                     onTap: () => Get.dialog(
                         Dialog(
                           backgroundColor: Colors.transparent,
-                          insetPadding: EdgeInsets.only(top: 90,left: MediaQuery.of(context).size.width*0.52,right: 10),
+                          insetPadding: EdgeInsets.only(top: 90,left: MediaQuery.of(context).size.width*0.60,right: 10),
                           alignment: Alignment.topRight,
                           child: Container(
                             height: 120,

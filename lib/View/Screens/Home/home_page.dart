@@ -176,11 +176,7 @@ class _HomePageState extends State<HomePage> {
                         hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.5)),
                         fillColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
                         filled: true,
-
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL+2),
-                          child: SvgPicture.asset(Images.search,color: KWhite.withOpacity(0.5)),
-                        ),
+                        prefixIcon: Icon(Icons.search,size: 22,color: KWhite.withOpacity(0.5)),
                       ),
                     ),
                   ),
@@ -418,9 +414,7 @@ class _HomePageState extends State<HomePage> {
               //         );
               //       }),
               // ),
-              AdvertisementContainer(context: context,
-              height: isGroup && !isProfile? 65 : 90
-              )
+              AdvertisementContainer(context: context, height: isGroup && !isProfile? 65 : 90)
 
             ],
           ),

@@ -8,9 +8,9 @@ Widget ActionWidget({required String icon,required String text, Color color=KWhi
     onTap: onTap,
     child: Column(
         children:[
-          SvgPicture.asset(icon,color: color,width: 18,height: 18,),
-          SizedBox(height: 5,),
-          Text(text,style: proximaBold.copyWith(color: color,)),
+          SvgPicture.asset(icon,color: color,width: 22,height: 22,),
+          SizedBox(height: 10,),
+          Text(text,style: proximaBold.copyWith(color: color,fontSize: 12)),
         ]
     ),
   );

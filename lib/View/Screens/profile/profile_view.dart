@@ -201,7 +201,7 @@ class _ProfileViewState extends State<ProfileView> with TickerProviderStateMixin
             child: Column(
               children: [
                 PreviewCard(userDetail: userDetail,onTapUser: tapUser,),
-                SizedBox(height: 30,),
+                SizedBox(height: 33,),
                 Align(alignment:Alignment.topLeft,child: Text(userDetail.description??'',style: proximaSemiBold.copyWith(color: KWhite,))),
                 SizedBox(height: 15,),
                 ProfileItem(title: "HEIGHT",value: userDetail.height??'',),

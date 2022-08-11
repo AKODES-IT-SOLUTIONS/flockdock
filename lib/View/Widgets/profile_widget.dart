@@ -46,7 +46,7 @@ Widget ProfileWidget({
           children: [
             MyText(
               text: profileName,
-              size: 14,
+              size: 13,
               weight: FontWeight.w800,
               color: KWhite,
               fontFamily: "Proxima",
@@ -63,7 +63,6 @@ Widget ProfileWidget({
                     MyText(
                       size: 12,
                       text: distance.length>6?distance:distance+" km",
-                      weight: FontWeight.w700,
                       color: KWhite,
                       fontFamily: "Proxima",
                     ),
@@ -90,13 +89,13 @@ Widget GroupWidget({double? width, required String img, required String groupNam
     children: [
       Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(8),
             image: DecorationImage(image: NetworkImage(img), fit: BoxFit.cover)
         ),
       ),
       Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(8),
             gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,

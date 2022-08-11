@@ -74,14 +74,14 @@ class _EnterEmailState extends State<EnterEmail> {
                     align: TextAlign.center,
                     fontFamily: "Proxima",
                     size: 17,
-                    color: KWhite.withOpacity(0.5),
+                    color: KWhite,
                   ),
                   spaceVertical(38),
                   MyTextField(
                     textInputType: TextInputType.emailAddress,
                     controller: _resetEmailController,
                     isObSecure: false,
-                    hintText: "Email Address",
+                    hintText: "Email address",
                   ),
                   spaceVertical(28),
                   MyButton(
