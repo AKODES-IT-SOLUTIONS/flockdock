@@ -70,7 +70,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 18),
                 InkWell(
                   onTap: () => Get.to(EditProfile()),
                     child: Text("Edit Profile", style: proximaBold.copyWith(color: KBlue),),
@@ -87,7 +87,7 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
               title: Text(
                 "Settings",
-                style: proximaBold.copyWith(fontSize:Dimensions.fontSizeExtraLarge,color: KWhite.withOpacity(0.5)),
+                style: proximaBold.copyWith(fontSize:Dimensions.fontSizeExtraLarge+2,color: KWhite.withOpacity(0.5)),
               ),
               onTap: () => Get.to(Setting()),
             ),
@@ -121,7 +121,7 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
               onTap: offlineUser,
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 35,),
 
             
 

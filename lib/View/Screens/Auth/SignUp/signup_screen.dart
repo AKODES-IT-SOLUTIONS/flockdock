@@ -34,6 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String? value;
   String birthday="Birthday";
 
+
   DateTime checkInDate = DateTime.now();
 
   Future<Null> selectTimePicker(BuildContext context) async {
@@ -150,7 +151,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               children: [
                                 MyText(
                                   text: birthday,
-                                  color: KWhite,
+                                  color: birthday == "Birthday"? KWhite.withOpacity(0.5): KWhite,
                                   size: 16,
                                   fontFamily: "Proxima",
                                 ),

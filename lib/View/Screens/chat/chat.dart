@@ -483,7 +483,7 @@ class _ChatState extends State<Chat> {
                   height: 50,
                   width: MediaQuery.of(context).size.width*0.77,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(15),
                       color: KDullBlack
                   ),
                   child: TextField(
@@ -492,12 +492,13 @@ class _ChatState extends State<Chat> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Write message here...",
-                      hintStyle: TextStyle(color: KWhite.withOpacity(0.5)),
+                      hintStyle: TextStyle(color: KWhite),
                       suffixIcon:  GestureDetector(
                           onTap: sendTextMessage,
                           child: Container(
-                              padding: EdgeInsets.all(10),
-                              height: 20,child: SvgPicture.asset('assets/images/send.svg'))
+                              padding: EdgeInsets.only(left: 10,top: 10,bottom: 10),
+                              height: 20,
+                              child: SvgPicture.asset('assets/images/send.svg'))
                       ),
                     ),
                   ),

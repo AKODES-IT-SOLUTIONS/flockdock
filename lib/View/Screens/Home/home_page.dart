@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 45,
+                    height: 49,
                     margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_DEFAULT),
                     width: MediaQuery.of(context).size.width*0.8,
                     decoration: BoxDecoration(
@@ -173,10 +173,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                         isDense: true,
                         hintText: "Search...",
-                        hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.5)),
+                        hintStyle: proximaBold.copyWith(color: KWhite.withOpacity(0.5),fontSize: 16),
                         fillColor: Color.fromARGB(1,65, 68, 82,).withOpacity(0.9),
                         filled: true,
-                        prefixIcon: Icon(Icons.search,size: 22,color: KWhite.withOpacity(0.5)),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(bottom: 6.0),
+                          child: Icon(Icons.search,size: 24,color: KWhite.withOpacity(0.5)),
+                        ),
                       ),
                     ),
                   ),

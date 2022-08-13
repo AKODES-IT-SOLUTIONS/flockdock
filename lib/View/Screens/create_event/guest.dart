@@ -189,12 +189,12 @@ class _GuestState extends State<Guest> {
                         },
                       ),
                       SizedBox(width: 20,),
-                      Text("Top-to-Bottom Ratio",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeDefault),),
+                      Text("Top-to-Bottom Ratio",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeDefault+2,fontWeight: FontWeight.w500),),
                     ],
                   ),
                   SizedBox(height: 25,),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -216,7 +216,7 @@ class _GuestState extends State<Guest> {
                     ),
                   ),
                   SizedBox(height: 25,),
-                  Text("Maximum group size",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeDefault),),
+                  Text("Maximum group size",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeDefault+2,fontWeight: FontWeight.w500),),
                   SizedBox(height: 5,),
                   MyTextField(
                     verticalPadding: 0.0,
@@ -243,7 +243,7 @@ class _GuestState extends State<Guest> {
                         },
                       ),
                       SizedBox(width: 20,),
-                      Text("Guests can invite others",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeDefault),),
+                      Text("Guests can invite others",style: proximaBold.copyWith(color: KWhite,fontSize: Dimensions.fontSizeDefault+2,fontWeight: FontWeight.w500),),
                     ],
                   ),
                   SizedBox(height: 20,),

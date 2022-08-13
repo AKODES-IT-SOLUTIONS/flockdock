@@ -68,6 +68,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       body: Padding(
         padding:  EdgeInsets.all(isMap?0:Dimensions.PADDING_SIZE_DEFAULT),
         child: Stack(
+          alignment: Alignment.center,
           children: [
             Column(
               children: [
@@ -386,7 +387,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   ),
                 ),
               ),
-            if(isMap)Center(
+            if(isMap)Positioned(
+              top: 210,
               child: Container(
                 height: 100,
                 width: 100,
@@ -504,7 +506,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     ));
     setState(() {});
   }
-  Future<Uint8List> convertAssetToUnit8List(String imagePath, {int width = 330}) async {
+  Future<Uint8List> convertAssetToUnit8List(String imagePath, {int width = 600}) async {
     ByteData data = await rootBundle.load(imagePath);
     Codec codec = await instantiateImageCodec(data.buffer.asUint8List(), targetWidth: width);
     FrameInfo fi = await codec.getNextFrame();
